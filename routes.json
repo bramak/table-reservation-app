@@ -1,0 +1,5 @@
+{
+  "/business/:id": "/business?business_id=:id",
+  "/photos/:id": "/photos?photo_id=:id",
+  "/businesses/": "/business"
+}
