@@ -6,37 +6,20 @@
   <body>
     <div id="headerdetails"></div>
 
-    <div class="tab">
-      <button class="tablinks" onclick="openpage(event, 'Details')">
-        Details
-      </button>
-      <button class="tablinks" onclick="openpage(event, 'Photos')">
-        Photos
-      </button>
-      <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
-      <button class="tablinks" onclick="openpage(event, 'Reviews')">
-        Reviews
-      </button>
-    </div>
-
-    <div id="Details">
-      <div id="checkboxvalues"></div>
-    </div>
-
-    <div id="Photos" class="tabcontent">
-      <h3>Photos</h3>
-    </div>
-
-    <div id="Menu" class="tabcontent">
-      <h3>Menu</h3>
-    </div>
-
-    <div id="Reviews" class="tabcontent">
-      <h3>Reviews</h3>
-    </div>
-
     <!--fetch script-->
     <script>
+
+      //convert string to bool
+      function converttobool(string) {
+
+        switch(string.toLowerCase().trim()){
+        case "true": case "yes": case "1": return true;
+        case "false": case "no": case "0": case null: return false;
+        default: return Boolean(string);
+    }
+
+      }
+
       // create an element
       const createNode = (elem) => {
         return document.createElement(elem);
@@ -65,64 +48,114 @@
             const header = `<div>
           <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png />
             <h1>
-              Restraunt Name
+              ${item.name}
               <button class="ratingbox" type="button" disabled>
                 <img src="star.svg" width="16" height="16" /> ${item.stars}
               </button>
             </h1>
             <h2>
-              ${item.name}<br />
+              ${item.address}<br />
               ${item.city}<br />
               ${item.state}<br />
               ${item.postal_code}
             </h2>
+
+            <div class="tab">
+            <button class="tablinks" onclick="openpage(event, 'Details')">
+              Details
+            </button>
+            <button class="tablinks" onclick="openpage(event, 'Photos')">
+              Photos
+            </button>
+            <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
+            <button class="tablinks" onclick="openpage(event, 'Reviews')">
+              Reviews ( ${item.review_count} )
+            </button>
+          </div>
+
+          <div id="Details" class="tabcontent">
+            <div id="averagecost_mealtimes"></div>
+            <hr>
+            <h3><div id="otherattributes"></div></h3>
+            
+            <div id="checkboxvalues"></div>
+            <hr>
+            
+            <br>
+          </div>
+
+          <div id="Photos" class="tabcontent">
+            <h3>Photos</h3>
+          </div>
+
+          <div id="Menu" class="tabcontent">
+            <h3>Menu</h3>
+          </div>
+
+          <div id="Reviews" class="tabcontent">
+            <h3>Reviews</h3>
+          </div>
+
+
             </div>`;
+
+            const averagecost_mealtimesjs = `<div>
+          <button class="categories" disabled>${item.categories}</button>
+
+          <h3>Average cost:${item.attributes.RestaurantsPriceRange2}</h3>
+            <br>
+            <hr>
+            <h3>Good For Meal
+            <button class="categories" disabled>value</button></h3></div>
+          `;
+
+            const otherattributesjs = `<button class="categories2" disabled>Full Bar</button>`;
 
             const checkboxvaluesjs = `
             <div>
             
             <label class="container">Restaraunt Reservations
-              <input type="checkbox" ${item.RestaurantsReservations}>
+              <input type="checkbox" id="restarauntreservations">
               <span class="checkmark"></span>
           </label>
           <label class="container">Caters
-              <input type="checkbox" value="${item.Caters}" >
+              <input type="checkbox" id="caters">
               <span class="checkmark"></span>
           </label>
           <label class="container">Table Service
-              <input type="checkbox" value="${item.RestaurantsTableService}">
+              <input type="checkbox" id="tableservice">
               <span class="checkmark"></span>
           </label>
           <label class="container">Take Out
-              <input type="checkbox" value="${item.RestaurantsTakeOut}">
+              <input type="checkbox" id="takeout">
               <span class="checkmark"></span>
           </label>
           <label class="container"> OutdoorSeating
-              <input type="checkbox" value="${item.OutdoorSeating}">
+              <input type="checkbox" id="outdoorseating">
               <span class="checkmark"></span>
           </label>
           <label class="container"> Bike Parking
-              <input type="checkbox" value="${item.BikeParking}">
+              <input type="checkbox" id="bikeparking">
               <span class="checkmark"></span>
           </label>
           <label class="container"> Has Tv
-              <input type="checkbox" value="${item.HasTV}">
+              <input type="checkbox" id="hastv">
               <span class="checkmark"></span>
           </label>
           <label class="container"> Wifi
-              <input type="checkbox" value="${item.WiFi}">
+              <input type="checkbox" id="wifi">
               <span class="checkmark"></span>
           </label>
           <label class="container">Good For Kids
-              <input type="checkbox" value="${item.GoodForKids}" >
+              <input type="checkbox" id="goodforkids">
               <span class="checkmark"></span>
           </label>
           <label class="container">Good For Groups
-              <input type="checkbox" value="${item.RestaurantsGoodForGroups}">
+              <input type="checkbox" id="goodforgroups">
               <span class="checkmark"></span>
           </label>
           <label class="container">Delivery
-              <input type="checkbox" value="${item.RestaurantsDelivery}">
+              <input type="checkbox" id="delivery">
               <span class="checkmark"></span>
           </label>  
 
@@ -134,8 +167,31 @@
               .appendChild(createElementFromHTML(header));
 
             document
-              .getElementById("Details")
+              .getElementById("checkboxvalues")
               .appendChild(createElementFromHTML(checkboxvaluesjs));
+
+
+              document.getElementById("restarauntreservations").checked = converttobool(item.attributes.RestaurantsReservations);
+              document.getElementById("caters").checked = converttobool(item.attributes.Caters);
+              document.getElementById("tableservice").checked = converttobool(item.attributes.RestaurantsTableService);
+              document.getElementById("takeout").checked = converttobool(item.attributes.RestaurantsTakeOut);
+              document.getElementById("outdoorseating").checked = converttobool(item.attributes.OutdoorSeating);
+              document.getElementById("bikeparking").checked = converttobool(item.attributes.BikeParking);
+              document.getElementById("hastv").checked = converttobool(item.attributes.HasTV);
+              document.getElementById("wifi").checked = converttobool(item.attributes.WiFi);
+              document.getElementById("goodforkids").checked = converttobool(item.attributes.GoodForKids);
+              document.getElementById("goodforgroups").checked = converttobool(item.attributes.RestaurantsGoodForGroups);
+              document.getElementById("delivery").checked = converttobool(item.attributes.RestaurantsDelivery);  
+
+            document
+              .getElementById("averagecost_mealtimes")
+              .appendChild(createElementFromHTML(averagecost_mealtimesjs));
+
+            document
+              .getElementById("otherattributes")
+              .appendChild(createElementFromHTML(otherattributesjs));
+
+
           });
         })
         .catch((err) => {
@@ -159,23 +215,13 @@
       document.getElementById(pagename).style.display = "block";
       evt.currentTarget.className += " active";
     }
+
+
   </script>
 
+
   <!--the map script-->
-  <script>
-    // Initialize and add the map
-    function initMap() {
-      // The location of rest
-      var rest = { lat: 43.6054989743, lng: -79.652288909 };
-      // The map, centered at rest
-      var map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: rest,
-      });
-      // The marker, positioned at rest
-      var marker = new google.maps.Marker({ position: rest, map: map });
-    }
-  </script>
+  <script></script>
 
   <script
     defer
