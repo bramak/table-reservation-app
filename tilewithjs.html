@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="titlecard.css" />
+  </head>
+  <body>
+    <ul id="business"></ul>
+
+  </body>
+  <script>
+    // create an element
+    const createNode = (elem) => {
+      return document.createElement(elem);
+    };
+
+    function createElementFromHTML(htmlString) {
+      var div = document.createElement("div");
+      div.innerHTML = htmlString.trim();
+      return div.firstChild;
+    }
+
+    // append an element to parent
+    const appendNode = (parent, elem) => {
+      parent.appendChild(elem);
+    };
+
+    // List Element
+    const ul = document.querySelector("#business");
+
+    // API URL
+    const url = "http://localhost:3001/business";
+
+    // make the API call
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        // iterate over items
+        const listitems = data.forEach((item) => {
+          // create the elements
+          const tile = `
+          <div class="flex-container">
+            
+          <div>
+             
+                <div class="mainbox">
+                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" /></div>
+                <div class="overlay"></div>
+                <div class="buttonoverlay">
+                <div class="restname">${item.name}</div>
+                <button class="ratingbox" type="button" disabled>
+                <img src="star.svg" width="16" height="16" /> ${item.stars}
+                </button>
+                </div>
+                </div>
+                <div class="bottommain">
+                <button type="button" class="button">View Details</button>
+                </div>
+        </div>
+        </div>`;
+                console.log(item);
+                ul.appendChild( createElementFromHTML(tile));
+        });
+        
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+  </script>
+</html>

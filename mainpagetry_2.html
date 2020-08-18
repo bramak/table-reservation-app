@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="mainpagetry_2.css">
+    </head>
+    
+    <body>
+
+        <img class="headingimage" src="res_01.png">
+        <h1> Restraunt Name
+        <button class="ratingbox" type="button" disabled><img src="star.svg" width="16" height="16"> 4</button>
+        </h1>
+        <h2>"address": "30 Eglinton Avenue W"<br>
+            "city": "Mississauga"<br>
+            "state": "ON"<br>
+            "postal_code": "L5R 3E7"</h2>
+
+        <div class="tab">
+        <button class="tablinks" onclick="openpage(event, 'Details')">Details</button>
+        <button class="tablinks" onclick="openpage(event, 'Photos')">Photos</button>
+        <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
+        <button class="tablinks" onclick="openpage(event, 'Reviews')">Reviews</button>
+        </div>
+
+        <div id="Details" class="tabcontent">
+            <!--food categories-->
+            <button class="categories" disabled>value</button>
+
+            <h3>Average cost:</h3>
+            <br>
+            <hr>
+            <h3>Good For Meal
+            <button class="categories" disabled>value</button></h3>
+            
+            <!--googlemap-->
+            <sticky>
+                <div id="map"></div>
+            </sticky>
+            <br>
+            <h3>Ambience
+                <button class="categories" disabled>value</button></h3>
+            <br>
+            <h3>
+                <button class="categories2" disabled>Full Bar</button></h3>
+            <br>
+            
+            <!--checkbox values-->
+            <label class="container">Restaraunt Reservations
+                <input type="checkbox" checked="checked" readonly >
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Caters
+                <input type="checkbox" checked="true" readonly>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Table Service
+                <input type="checkbox" checked="true" readonly>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Take Out
+                <input type="checkbox" checked="true" readonly>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container"> OutdoorSeating
+                <input type="checkbox" readonly >
+                <span class="checkmark"></span>
+            </label>
+            <label class="container"> Has Tv
+                <input type="checkbox" readonly >
+                <span class="checkmark"></span>
+            </label>
+            <label class="container"> Wifi
+                <input type="checkbox" readonly >
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Good For Kids
+                <input type="checkbox" checked="true" readonly>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Good For Groups
+                <input type="checkbox" checked="true" readonly>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Delivery
+                <input type="checkbox" checked="false" readonly>
+                <span class="checkmark"></span>
+            </label>
+         <hr>
+
+        </div>
+
+        <div id="Photos" class="tabcontent">
+        <h3>Photos</h3>
+        
+        </div>
+
+        <div id="Menu" class="tabcontent">
+        <h3>Menu</h3>
+        </div>
+
+        <div id="Reviews" class="tabcontent">
+            <h3>Reviews</h3>
+        </div>
+
+        <!--the tab script-->
+        <script>
+        function openpage(evt, pagename) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(pagename).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+        </script>
+
+        <script>
+        // Initialize and add the map
+        function initMap()
+        {
+        // The location of rest
+        var rest = {lat: 43.6054989743, lng: -79.652288909};
+        // The map, centered at rest
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 4, center: rest});
+        // The marker, positioned at rest
+        var marker = new google.maps.Marker({position: rest, map: map});
+        }
+        </script>
+
+        <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=randomvalue&callback=initMap">
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="mainpagetry_2.css" />
+  </head>
+
+  <body>
+    <div id="headerdetails"></div>
+
+    <div class="tab">
+      <button class="tablinks" onclick="openpage(event, 'Details')">
+        Details
+      </button>
+      <button class="tablinks" onclick="openpage(event, 'Photos')">
+        Photos
+      </button>
+      <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
+      <button class="tablinks" onclick="openpage(event, 'Reviews')">
+        Reviews
+      </button>
+    </div>
+
+    <div id="Details">
+      <div id="checkboxvalues"></div>
+    </div>
+
+    <div id="Photos" class="tabcontent">
+      <h3>Photos</h3>
+    </div>
+
+    <div id="Menu" class="tabcontent">
+      <h3>Menu</h3>
+    </div>
+
+    <div id="Reviews" class="tabcontent">
+      <h3>Reviews</h3>
+    </div>
+
+    <!--fetch script-->
+    <script>
+      // create an element
+      const createNode = (elem) => {
+        return document.createElement(elem);
+      };
+
+      function createElementFromHTML(htmlString) {
+        var div = document.createElement("div");
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
+      }
+
+      // append an element to parent
+      const appendNode = (parent, elem) => {
+        parent.appendChild(elem);
+      };
+
+      //const div = document.querySelector("#headerdetails");
+      const url =
+        "http://localhost:3001/business?business_id=QXAEGFB4oINsVuTFxEYKFQ";
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          const listitems = data.forEach((item) => {
+            // create the elements
+            const header = `<div>
+          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png />
+            <h1>
+              Restraunt Name
+              <button class="ratingbox" type="button" disabled>
+                <img src="star.svg" width="16" height="16" /> ${item.stars}
+              </button>
+            </h1>
+            <h2>
+              ${item.name}<br />
+              ${item.city}<br />
+              ${item.state}<br />
+              ${item.postal_code}
+            </h2>
+            </div>`;
+
+            const checkboxvaluesjs = `
+            <div>
+            
+            <label class="container">Restaraunt Reservations
+              <input type="checkbox" ${item.RestaurantsReservations}>
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Caters
+              <input type="checkbox" value="${item.Caters}" >
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Table Service
+              <input type="checkbox" value="${item.RestaurantsTableService}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Take Out
+              <input type="checkbox" value="${item.RestaurantsTakeOut}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> OutdoorSeating
+              <input type="checkbox" value="${item.OutdoorSeating}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Bike Parking
+              <input type="checkbox" value="${item.BikeParking}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Has Tv
+              <input type="checkbox" value="${item.HasTV}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Wifi
+              <input type="checkbox" value="${item.WiFi}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Good For Kids
+              <input type="checkbox" value="${item.GoodForKids}" >
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Good For Groups
+              <input type="checkbox" value="${item.RestaurantsGoodForGroups}">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Delivery
+              <input type="checkbox" value="${item.RestaurantsDelivery}">
+              <span class="checkmark"></span>
+          </label>  
+
+          </div>
+            `;
+
+            document
+              .getElementById("headerdetails")
+              .appendChild(createElementFromHTML(header));
+
+            document
+              .getElementById("Details")
+              .appendChild(createElementFromHTML(checkboxvaluesjs));
+          });
+        })
+        .catch((err) => {
+          console.error("Error: ", err);
+        });
+    </script>
+  </body>
+
+  <!--the tab script-->
+  <script>
+    function openpage(evt, pagename) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(pagename).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+
+  <!--the map script-->
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of rest
+      var rest = { lat: 43.6054989743, lng: -79.652288909 };
+      // The map, centered at rest
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: rest,
+      });
+      // The marker, positioned at rest
+      var marker = new google.maps.Marker({ position: rest, map: map });
+    }
+  </script>
+
+  <script
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=randomvalue&callback=initMap"
+  ></script>
+</html>
