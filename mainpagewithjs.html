@@ -8,17 +8,33 @@
 
     <!--fetch script-->
     <script>
-
       //convert string to bool
       function converttobool(string) {
-
-        switch(string.toLowerCase().trim()){
-        case "true": case "yes": case "1": return true;
-        case "false": case "no": case "0": case null: return false;
-        default: return Boolean(string);
-    }
-
-      }
+        switch (string.toLowerCase().trim()) {
+          case "true":
+          case "yes":
+          case "1":
+            return true;
+          case "false":
+          case "no":
+          case "0":
+          case null:
+            return false;
+          default:
+            return Boolean(string);
+        }
+	  }
+	  
+	  //edit values with 'u in them
+	  function fixtext(string)
+	  {
+		var val=string.replace("u"," ");
+		val=val.replace("_"," ");
+		val=val.replace("'"," ");
+		val=val.replace("'"," ");
+		val=val.trim(); 
+		return val;
+	  }
 
       // create an element
       const createNode = (elem) => {
@@ -76,9 +92,10 @@
           <div id="Details" class="tabcontent">
             <div id="averagecost_mealtimes"></div>
             <hr>
-            <h3><div id="otherattributes"></div></h3>
+            <h3><div id="otherattributes"></div>
             
-            <div id="checkboxvalues"></div>
+
+            <div id="checkboxvalues"></div></h3>
             <hr>
             
             <br>
@@ -100,16 +117,23 @@
             </div>`;
 
             const averagecost_mealtimesjs = `<div>
-          <button class="categories" disabled>${item.categories}</button>
+          <button class="tab" ><h3>${item.categories}</h3></button>
 
-          <h3>Average cost:${item.attributes.RestaurantsPriceRange2}</h3>
+          <h3>Average cost: <div id="pricemark"></div></h3>
             <br>
             <hr>
-            <h3>Good For Meal
-            <button class="categories" disabled>value</button></h3></div>
+            <div id="goodformeal"></div>
+            </div>
           `;
 
-            const otherattributesjs = `<button class="categories2" disabled>Full Bar</button>`;
+			const otherattributesjs = `<div>
+				<button class="categories2" disabled>${fixtext(item.attributes.Alcohol)}</button>
+				<button class="categories2" disabled>${fixtext(item.attributes.RestaurantsAttire)}</button>
+				<button class="categories2" disabled>${fixtext(item.attributes.NoiseLevel)}</button>
+				</div>`;
+
+            const goodformealjs = `<div><div class="loading"></div>
+			<div id="Dessert"></div></div>`;
 
             const checkboxvaluesjs = `
             <div>
@@ -158,9 +182,12 @@
               <input type="checkbox" id="delivery">
               <span class="checkmark"></span>
           </label>  
-
+		  
           </div>
             `;
+
+            const loadingjs = `<div>loading</div>`;
+            const Dessertjs = `<div><button class="categories" disabled>Dessert</button>${item.attributes.GoodForMeal}</div>`;
 
             document
               .getElementById("headerdetails")
@@ -170,28 +197,77 @@
               .getElementById("checkboxvalues")
               .appendChild(createElementFromHTML(checkboxvaluesjs));
 
-
-              document.getElementById("restarauntreservations").checked = converttobool(item.attributes.RestaurantsReservations);
-              document.getElementById("caters").checked = converttobool(item.attributes.Caters);
-              document.getElementById("tableservice").checked = converttobool(item.attributes.RestaurantsTableService);
-              document.getElementById("takeout").checked = converttobool(item.attributes.RestaurantsTakeOut);
-              document.getElementById("outdoorseating").checked = converttobool(item.attributes.OutdoorSeating);
-              document.getElementById("bikeparking").checked = converttobool(item.attributes.BikeParking);
-              document.getElementById("hastv").checked = converttobool(item.attributes.HasTV);
-              document.getElementById("wifi").checked = converttobool(item.attributes.WiFi);
-              document.getElementById("goodforkids").checked = converttobool(item.attributes.GoodForKids);
-              document.getElementById("goodforgroups").checked = converttobool(item.attributes.RestaurantsGoodForGroups);
-              document.getElementById("delivery").checked = converttobool(item.attributes.RestaurantsDelivery);  
+            document.getElementById(
+              "restarauntreservations"
+            ).checked = converttobool(item.attributes.RestaurantsReservations);
+            document.getElementById("caters").checked = converttobool(
+              item.attributes.Caters
+            );
+            document.getElementById("tableservice").checked = converttobool(
+              item.attributes.RestaurantsTableService
+            );
+            document.getElementById("takeout").checked = converttobool(
+              item.attributes.RestaurantsTakeOut
+            );
+            document.getElementById("outdoorseating").checked = converttobool(
+              item.attributes.OutdoorSeating
+            );
+            document.getElementById("bikeparking").checked = converttobool(
+              item.attributes.BikeParking
+            );
+            document.getElementById("hastv").checked = converttobool(
+              item.attributes.HasTV
+			);
+			//editthis
+            document.getElementById("wifi").checked = converttobool(fixtext(
+              item.attributes.WiFi)
+			);
+			//wifiisn'tabool
+            document.getElementById("goodforkids").checked = converttobool(
+              item.attributes.GoodForKids
+            );
+            document.getElementById("goodforgroups").checked = converttobool(
+              item.attributes.RestaurantsGoodForGroups
+            );
+            document.getElementById("delivery").checked = converttobool(
+              item.attributes.RestaurantsDelivery
+            );
 
             document
               .getElementById("averagecost_mealtimes")
               .appendChild(createElementFromHTML(averagecost_mealtimesjs));
 
+            const pricemarkjs =
+              '<img src="price_tag.png" width="16" height="16" />';
+
+            for (i = 0; i < item.attributes.RestaurantsPriceRange2; i++) {
+              document
+                .getElementById("pricemark")
+                .appendChild(createElementFromHTML(pricemarkjs));
+            }
+
             document
               .getElementById("otherattributes")
               .appendChild(createElementFromHTML(otherattributesjs));
 
+            document
+              .getElementById("goodformeal")
+              .appendChild(createElementFromHTML(goodformealjs));
 
+			document
+                .getElementById("Dessert")
+                .appendChild(createElementFromHTML(Dessertjs));  
+			/*
+			//dessert and other goodformeal loop to be fixed
+            if (item.attributes.GoodForMeal.lunch == "True") {
+              document
+                .getElementById("Dessert")
+                .appendChild(createElementFromHTML(Dessertjs));
+            } else {
+              document
+                .getElementById("loading")
+                .appendChild(createElementFromHTML(loadingjs));
+            }*/
           });
         })
         .catch((err) => {
@@ -215,10 +291,7 @@
       document.getElementById(pagename).style.display = "block";
       evt.currentTarget.className += " active";
     }
-
-
   </script>
-
 
   <!--the map script-->
   <script></script>
