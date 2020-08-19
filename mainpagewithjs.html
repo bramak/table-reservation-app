@@ -52,9 +52,12 @@
         parent.appendChild(elem);
       };
 
+      
       //const div = document.querySelector("#headerdetails");
       const url =
         "http://localhost:3001/business?business_id=QXAEGFB4oINsVuTFxEYKFQ";
+
+      //const url2 = "http://localhost:3001/photos";  
 
       fetch(url)
         .then((res) => res.json())
@@ -93,16 +96,17 @@
             <div id="averagecost_mealtimes"></div>
             <hr>
             <h3><div id="otherattributes"></div>
-            
-
             <div id="checkboxvalues"></div></h3>
             <hr>
-            
             <br>
           </div>
 
           <div id="Photos" class="tabcontent">
             <h3>Photos</h3>
+
+            <div id="photos"></div>
+
+
           </div>
 
           <div id="Menu" class="tabcontent">
@@ -254,7 +258,7 @@
               .getElementById("goodformeal")
               .appendChild(createElementFromHTML(goodformealjs));
 
-			document
+			      document
                 .getElementById("Dessert")
                 .appendChild(createElementFromHTML(Dessertjs));  
 			/*
@@ -268,13 +272,20 @@
                 .getElementById("loading")
                 .appendChild(createElementFromHTML(loadingjs));
             }*/
+
+
+            
+
+            
           });
         })
         .catch((err) => {
           console.error("Error: ", err);
         });
+    
+
     </script>
-  </body>
+  </body> 
 
   <!--the tab script-->
   <script>
