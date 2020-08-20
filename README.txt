@@ -1,2 +1,2 @@
-tilewithjs.html is the menu
-mainpagewithjs.html is the page details
+restarauntlist.html is the menu
+restarauntdescriptions.html is the page details
