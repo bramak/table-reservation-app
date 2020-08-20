@@ -1,6 +1,8 @@
+html, body { height: 100%; }
 body {
     font-family: Arial;
     background-color: rgb(250, 248, 248);
+    height: 100%;
     }
 
 
@@ -38,9 +40,8 @@ sticky {
 /*mainimage*/
 .headingimage {
     border-radius: 25px;
-    
     width: 80%;
-    height: 50%;
+    height: 25vw;
     object-fit: cover;
     display: block;
     margin-left: auto;

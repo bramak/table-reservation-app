@@ -4,44 +4,43 @@
     <link rel="stylesheet" type="text/css" href="titlecard.css" />
   </head>
   <body>
-    <ul id="business"></ul>
+    <div class="flex-container">
+      <div id="headerdetails"></div>
+    </div>
+    
 
-  </body>
-  <script>
-    // create an element
-    const createNode = (elem) => {
-      return document.createElement(elem);
-    };
+    <script>
+      // create an element
+      const createNode = (elem) => {
+        return document.createElement(elem);
+      };
 
-    function createElementFromHTML(htmlString) {
-      var div = document.createElement("div");
-      div.innerHTML = htmlString.trim();
-      return div.firstChild;
-    }
+      function createElementFromHTML(htmlString) {
+        var div = document.createElement("div");
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
+      }
 
-    // append an element to parent
-    const appendNode = (parent, elem) => {
-      parent.appendChild(elem);
-    };
+      // append an element to parent
+      const appendNode = (parent, elem) => {
+        parent.appendChild(elem);
+      };
 
-    // List Element
-    const ul = document.querySelector("#business");
+      // List Element
+      const ul = document.querySelector("#business");
 
-    // API URL
-    const url = "http://localhost:3001/business";
+      // API URL
+      const url = "http://localhost:3001/business";
 
-    // make the API call
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        // iterate over items
-        const listitems = data.forEach((item) => {
-          // create the elements
-          const tile = `
-          <div class="flex-container">
-            
+      // make the API call
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          // iterate over items
+          const listitems = data.forEach((item) => {
+            // create the elements
+            const tile = `
           <div>
-             
                 <div class="mainbox">
                 <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" /></div>
                 <div class="overlay"></div>
@@ -56,15 +55,18 @@
                 <div class="bottommain">
                 <button type="submit" class="button">View Details</button></form>
                 </div>
+                <br><br><br><br>
         </div>
-        </div>`;
-                console.log(item);
-                ul.appendChild( createElementFromHTML(tile));
+        `;
+            console.log(item);
+            document
+              .getElementById("headerdetails")
+              .appendChild(createElementFromHTML(tile));
+          });
+        })
+        .catch((err) => {
+          console.error("Error: ", err);
         });
-        
-      })
-      .catch((err) => {
-        console.error("Error: ", err);
-      });
-  </script>
+    </script>
+  </body>
 </html>

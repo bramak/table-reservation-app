@@ -1,10 +1,13 @@
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="mainpagetry_2.css" />
+    
   </head>
 
   <body>
-    <div id="headerdetails"></div>
+    
+    <div id="headerdetails">
 
     <!--fetch script-->
     <script>
@@ -69,6 +72,7 @@
             <!--${a}<br>
             ${urllength}<br>
             ${locationid}-->
+            
           <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" />
             <h1>
               ${item.name}
@@ -121,7 +125,7 @@
             <h3>Reviews</h3>
           </div>
 
-
+            
             </div>`;
 
             const averagecost_mealtimesjs = `<div>
@@ -310,6 +314,7 @@
           console.error("Error: ", err);
         });
     </script>
+    
   </body>
 
   <!--the tab script-->
