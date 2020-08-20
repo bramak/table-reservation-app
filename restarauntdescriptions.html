@@ -1,0 +1,324 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="mainpagetry_2.css" />
+  </head>
+
+  <body>
+    <div id="headerdetails"></div>
+
+    <!--fetch script-->
+    <script>
+      //convert string to bool
+      function converttobool(string) {
+        switch (string.toLowerCase().trim()) {
+          case "true":
+          case "yes":
+          case "1":
+            return true;
+          case "false":
+          case "no":
+          case "0":
+          case null:
+            return false;
+          default:
+            return Boolean(string);
+        }
+	  }
+	  
+	  //edit values with 'u in them
+	  function fixtext(string)
+	  {
+		var val=string.replace("u"," ");
+		val=val.replace("_"," ");
+		val=val.replace("'"," ");
+		val=val.replace("'"," ");
+		val=val.trim(); 
+		return val;
+	  }
+
+      // create an element
+      const createNode = (elem) => {
+        return document.createElement(elem);
+      };
+
+      function createElementFromHTML(htmlString) {
+        var div = document.createElement("div");
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
+      }
+
+      // append an element to parent
+      const appendNode = (parent, elem) => {
+        parent.appendChild(elem);
+      };
+
+      var a= window.location.href;
+      var urllength= a.length;
+      var locationid= a.substring(urllength-22,urllength);
+
+      //const div = document.querySelector("#headerdetails");
+      const url =
+        "http://localhost:3001/business?business_id="+locationid;
+
+      //const url2 = "http://localhost:3001/photos";  
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          const listitems = data.forEach((item) => {
+            // create the elements
+            const header = `<div>
+            <!--${a}<br>
+            ${urllength}<br>
+            ${locationid}-->
+          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" />
+            <h1>
+              ${item.name}
+              <button class="ratingbox" type="button" disabled>
+                <img src="star.svg" width="16" height="16" /> ${item.stars}
+              </button>
+            </h1>
+            <h2>
+              ${item.address}<br />
+              ${item.city}<br />
+              ${item.state}<br />
+              ${item.postal_code}
+            </h2>
+
+            <div class="tab">
+            <button class="tablinks" onclick="openpage(event, 'Details')">
+              Details
+            </button>
+            <button class="tablinks" onclick="openpage(event, 'Photos')">
+              Photos
+            </button>
+            <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
+            <button class="tablinks" onclick="openpage(event, 'Reviews')">
+              Reviews ( ${item.review_count} )
+            </button>
+          </div>
+
+          <div id="Details" class="tabcontent">
+            <div id="averagecost_mealtimes"></div>
+            <hr>
+            <h3><div id="otherattributes"></div>
+            <div id="checkboxvalues"></div></h3>
+            <hr>
+            <br>
+          </div>
+
+          <div id="Photos" class="tabcontent">
+            <h3>Photos</h3>
+
+            <div id="photos"></div>
+
+
+          </div>
+
+          <div id="Menu" class="tabcontent">
+            <h3>Menu</h3>
+          </div>
+
+          <div id="Reviews" class="tabcontent">
+            <h3>Reviews</h3>
+          </div>
+
+
+            </div>`;
+
+            const averagecost_mealtimesjs = `<div>
+          <div class="tab" border=10><h3 align="center">${item.categories}</h3></div>
+
+          <h3>Average cost: <div id="pricemark"></div></h3>
+            <br>
+            <hr>
+            <div id="goodformeal"></div>
+            </div>
+          `;
+
+			const otherattributesjs = `<div>
+				<button class="categories2" disabled>${item.attributes.Alcohol}</button>
+				<button class="categories2" disabled>${item.attributes.RestaurantsAttire}</button>
+				</div>`;
+
+
+            const goodformealjs = `<div><div class="loading"></div>
+			<div id="Dessert"></div></div>`;
+
+            const checkboxvaluesjs = `
+            <div>
+            
+            <label class="container">Restaraunt Reservations
+              <input type="checkbox" id="restarauntreservations">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Caters
+              <input type="checkbox" id="caters">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Table Service
+              <input type="checkbox" id="tableservice">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Take Out
+              <input type="checkbox" id="takeout">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> OutdoorSeating
+              <input type="checkbox" id="outdoorseating">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Bike Parking
+              <input type="checkbox" id="bikeparking">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Has Tv
+              <input type="checkbox" id="hastv">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container"> Wifi
+              <input type="checkbox" id="wifi">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Good For Kids
+              <input type="checkbox" id="goodforkids">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Good For Groups
+              <input type="checkbox" id="goodforgroups">
+              <span class="checkmark"></span>
+          </label>
+          <label class="container">Delivery
+              <input type="checkbox" id="delivery">
+              <span class="checkmark"></span>
+          </label>  
+		  
+          </div>
+            `;
+
+            const loadingjs = `<div>loading</div>`;
+            const Dessertjs = `<div><button class="categories" disabled>Dessert</button>${item.attributes.GoodForMeal}</div>`;
+
+            document
+              .getElementById("headerdetails")
+              .appendChild(createElementFromHTML(header));
+
+            document
+              .getElementById("checkboxvalues")
+              .appendChild(createElementFromHTML(checkboxvaluesjs));
+
+          if(item.attributes.RestaurantsReservations!=undefined)
+            document.getElementById("restarauntreservations").checked = converttobool(
+              item.attributes.RestaurantsReservations
+            );
+            if(item.attributes.Caters!=undefined)
+            document.getElementById("caters").checked = converttobool(
+              item.attributes.Caters
+            );
+            if(item.attributes.RestaurantsTableService!=undefined)
+            document.getElementById("tableservice").checked = converttobool(
+              item.attributes.RestaurantsTableService
+            );
+            if(item.attributes.RestaurantsTakeOut!=undefined)
+            document.getElementById("takeout").checked = converttobool(
+              item.attributes.RestaurantsTakeOut
+            );
+            if(item.attributes.OutdoorSeating!=undefined)
+            document.getElementById("outdoorseating").checked = converttobool(
+              item.attributes.OutdoorSeating
+            );
+            if(item.attributes.BikeParking!=undefined)
+            document.getElementById("bikeparking").checked = converttobool(
+              item.attributes.BikeParking
+            );
+            if(item.attributes.HasTV!=undefined)
+            document.getElementById("hastv").checked = converttobool(
+              item.attributes.HasTV
+			      );
+            if(item.attributes.WiFi!=undefined)
+            document.getElementById("wifi").checked = converttobool(fixtext(
+              item.attributes.WiFi) 
+			      );
+            if(item.attributes.GoodForKids!=undefined)
+            document.getElementById("goodforkids").checked = converttobool(
+              item.attributes.GoodForKids
+            );
+            if(item.attributes.RestaurantsGoodForGroups!=undefined)
+            document.getElementById("goodforgroups").checked = converttobool(
+              item.attributes.RestaurantsGoodForGroups
+            );
+            if(item.attributes.RestaurantsDelivery!=undefined)
+            document.getElementById("delivery").checked = converttobool(
+              item.attributes.RestaurantsDelivery
+            );
+
+            document
+              .getElementById("averagecost_mealtimes")
+              .appendChild(createElementFromHTML(averagecost_mealtimesjs));
+
+            const pricemarkjs =
+              '<img src="price_tag.png" width="16" height="16" />';
+
+            for (i = 0; i < item.attributes.RestaurantsPriceRange2; i++) {
+              document
+                .getElementById("pricemark")
+                .appendChild(createElementFromHTML(pricemarkjs));
+            }
+
+            document
+              .getElementById("otherattributes")
+              .appendChild(createElementFromHTML(otherattributesjs));
+
+            document
+              .getElementById("goodformeal")
+              .appendChild(createElementFromHTML(goodformealjs));
+
+			      document
+                .getElementById("Dessert")
+                .appendChild(createElementFromHTML(Dessertjs));  
+
+            console.log(item.attributes);    
+			/*
+			//dessert and other goodformeal loop to be fixed
+            if (item.attributes.GoodForMeal.lunch == "True") {
+              document
+                .getElementById("Dessert")
+                .appendChild(createElementFromHTML(Dessertjs));
+            } else {
+              document
+                .getElementById("loading")
+                .appendChild(createElementFromHTML(loadingjs));
+            }*/
+
+
+            
+
+            
+          });
+        })
+        .catch((err) => {
+          console.error("Error: ", err);
+        });
+    
+
+    </script>
+  </body> 
+
+  <!--the tab script-->
+  <script>
+    function openpage(evt, pagename) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(pagename).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+
+</html>
