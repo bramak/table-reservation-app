@@ -23,18 +23,17 @@
           default:
             return Boolean(string);
         }
-	  }
-	  
-	  //edit values with 'u in them
-	  function fixtext(string)
-	  {
-		var val=string.replace("u"," ");
-		val=val.replace("_"," ");
-		val=val.replace("'"," ");
-		val=val.replace("'"," ");
-		val=val.trim(); 
-		return val;
-	  }
+      }
+
+      //edit values with 'u in them
+      function fixtext(string) {
+        var val = string.replace("u'", " ");
+        val = val.replace("_", " ");
+        val = val.replace("'", " ");
+        val = val.replace("'", " ");
+        val = val.trim();
+        return val;
+      }
 
       // create an element
       const createNode = (elem) => {
@@ -52,15 +51,14 @@
         parent.appendChild(elem);
       };
 
-      var a= window.location.href;
-      var urllength= a.length;
-      var locationid= a.substring(urllength-22,urllength);
+      var a = window.location.href;
+      var urllength = a.length;
+      var locationid = a.substring(urllength - 22, urllength);
 
       //const div = document.querySelector("#headerdetails");
-      const url =
-        "http://localhost:3001/business?business_id="+locationid;
+      const url = "http://localhost:3001/business?business_id=" + locationid;
 
-      //const url2 = "http://localhost:3001/photos";  
+      
 
       fetch(url)
         .then((res) => res.json())
@@ -110,7 +108,7 @@
           <div id="Photos" class="tabcontent">
             <h3>Photos</h3>
 
-            <div id="photos"></div>
+            <div id="photos" class="cards"></div>
 
 
           </div>
@@ -136,11 +134,10 @@
             </div>
           `;
 
-			const otherattributesjs = `<div>
+            const otherattributesjs = `<div>
 				<button class="categories2" disabled>${item.attributes.Alcohol}</button>
 				<button class="categories2" disabled>${item.attributes.RestaurantsAttire}</button>
 				</div>`;
-
 
             const goodformealjs = `<div><div class="loading"></div>
 			<div id="Dessert"></div></div>`;
@@ -197,7 +194,7 @@
             `;
 
             const loadingjs = `<div>loading</div>`;
-            const Dessertjs = `<div><button class="categories" disabled>Dessert</button>${item.attributes.GoodForMeal}</div>`;
+            const Dessertjs = `<div>${item.attributes.GoodForMeal}</div>`;
 
             document
               .getElementById("headerdetails")
@@ -207,50 +204,52 @@
               .getElementById("checkboxvalues")
               .appendChild(createElementFromHTML(checkboxvaluesjs));
 
-          if(item.attributes.RestaurantsReservations!=undefined)
-            document.getElementById("restarauntreservations").checked = converttobool(
-              item.attributes.RestaurantsReservations
-            );
-            if(item.attributes.Caters!=undefined)
-            document.getElementById("caters").checked = converttobool(
-              item.attributes.Caters
-            );
-            if(item.attributes.RestaurantsTableService!=undefined)
-            document.getElementById("tableservice").checked = converttobool(
-              item.attributes.RestaurantsTableService
-            );
-            if(item.attributes.RestaurantsTakeOut!=undefined)
-            document.getElementById("takeout").checked = converttobool(
-              item.attributes.RestaurantsTakeOut
-            );
-            if(item.attributes.OutdoorSeating!=undefined)
-            document.getElementById("outdoorseating").checked = converttobool(
-              item.attributes.OutdoorSeating
-            );
-            if(item.attributes.BikeParking!=undefined)
-            document.getElementById("bikeparking").checked = converttobool(
-              item.attributes.BikeParking
-            );
-            if(item.attributes.HasTV!=undefined)
-            document.getElementById("hastv").checked = converttobool(
-              item.attributes.HasTV
-			      );
-            if(item.attributes.WiFi!=undefined)
-            document.getElementById("wifi").checked = converttobool(fixtext(
-              item.attributes.WiFi) 
-			      );
-            if(item.attributes.GoodForKids!=undefined)
-            document.getElementById("goodforkids").checked = converttobool(
-              item.attributes.GoodForKids
-            );
-            if(item.attributes.RestaurantsGoodForGroups!=undefined)
-            document.getElementById("goodforgroups").checked = converttobool(
-              item.attributes.RestaurantsGoodForGroups
-            );
-            if(item.attributes.RestaurantsDelivery!=undefined)
-            document.getElementById("delivery").checked = converttobool(
-              item.attributes.RestaurantsDelivery
-            );
+            if (item.attributes.RestaurantsReservations != undefined)
+              document.getElementById(
+                "restarauntreservations"
+              ).checked = converttobool(
+                item.attributes.RestaurantsReservations
+              );
+            if (item.attributes.Caters != undefined)
+              document.getElementById("caters").checked = converttobool(
+                item.attributes.Caters
+              );
+            if (item.attributes.RestaurantsTableService != undefined)
+              document.getElementById("tableservice").checked = converttobool(
+                item.attributes.RestaurantsTableService
+              );
+            if (item.attributes.RestaurantsTakeOut != undefined)
+              document.getElementById("takeout").checked = converttobool(
+                item.attributes.RestaurantsTakeOut
+              );
+            if (item.attributes.OutdoorSeating != undefined)
+              document.getElementById("outdoorseating").checked = converttobool(
+                item.attributes.OutdoorSeating
+              );
+            if (item.attributes.BikeParking != undefined)
+              document.getElementById("bikeparking").checked = converttobool(
+                item.attributes.BikeParking
+              );
+            if (item.attributes.HasTV != undefined)
+              document.getElementById("hastv").checked = converttobool(
+                item.attributes.HasTV
+              );
+            if (item.attributes.WiFi != undefined)
+              document.getElementById("wifi").checked = converttobool(
+                fixtext(item.attributes.WiFi)
+              );
+            if (item.attributes.GoodForKids != undefined)
+              document.getElementById("goodforkids").checked = converttobool(
+                item.attributes.GoodForKids
+              );
+            if (item.attributes.RestaurantsGoodForGroups != undefined)
+              document.getElementById("goodforgroups").checked = converttobool(
+                item.attributes.RestaurantsGoodForGroups
+              );
+            if (item.attributes.RestaurantsDelivery != undefined)
+              document.getElementById("delivery").checked = converttobool(
+                item.attributes.RestaurantsDelivery
+              );
 
             document
               .getElementById("averagecost_mealtimes")
@@ -273,36 +272,45 @@
               .getElementById("goodformeal")
               .appendChild(createElementFromHTML(goodformealjs));
 
+            /*
 			      document
                 .getElementById("Dessert")
                 .appendChild(createElementFromHTML(Dessertjs));  
-
-            console.log(item.attributes);    
-			/*
-			//dessert and other goodformeal loop to be fixed
-            if (item.attributes.GoodForMeal.lunch == "True") {
-              document
-                .getElementById("Dessert")
-                .appendChild(createElementFromHTML(Dessertjs));
-            } else {
-              document
-                .getElementById("loading")
-                .appendChild(createElementFromHTML(loadingjs));
-            }*/
-
-
+*/
+            console.log(item.attributes);
+  
             
+            const url1="http://localhost:3001/photos";
+            fetch(url1)
+              .then((res) => res.json())
+              .then((data) => {
+                // iterate over items
+                const listitems = data.forEach((item2) => {
+                  // create the elements
+                  if(item2.business_id==item.business_id){
+                  const photojs = `<div>
+                    
+                        <img src="https://s3-media2.fl.yelpcdn.com/bphoto/${item2.photo_id}/o.jpg" alt="${item2.caption},${item2.label}">
+                        
+                  </div>`;
+                  
+                  
+                  document.getElementById("photos").appendChild(createElementFromHTML(photojs));}
+                  console.log(item2);
+                });
+              })
+              .catch((err) => {
+                console.error("Error: ", err);
+              });
 
-            
+
           });
         })
         .catch((err) => {
           console.error("Error: ", err);
         });
-    
-
     </script>
-  </body> 
+  </body>
 
   <!--the tab script-->
   <script>
@@ -320,5 +328,4 @@
       evt.currentTarget.className += " active";
     }
   </script>
-
 </html>
