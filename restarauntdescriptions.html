@@ -2,14 +2,11 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="mainpagetry_2.css" />
-    
   </head>
 
   <body>
-    
-    <div id="headerdetails">
+    <div id="headerdetails"></div>
 
-    <!--fetch script-->
     <script>
       //convert string to bool
       function converttobool(string) {
@@ -61,17 +58,15 @@
       //const div = document.querySelector("#headerdetails");
       const url = "http://localhost:3001/business?business_id=" + locationid;
 
-      
-
+      //fetch buisness api script
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
           const listitems = data.forEach((item) => {
             // create the elements
+
+            //header elements: image, tabs and tab contents
             const header = `<div>
-            <!--${a}<br>
-            ${urllength}<br>
-            ${locationid}-->
             
           <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" />
             <h1>
@@ -125,26 +120,30 @@
             <h3>Reviews</h3>
           </div>
 
-            
             </div>`;
 
+            //averagecost and mealtimes div, placed into details tab
             const averagecost_mealtimesjs = `<div>
           <div class="tab" border=10><h3 align="center">${item.categories}</h3></div>
 
           <h3>Average cost: <div id="pricemark"></div></h3>
-            <br>
             <hr>
-            <div id="goodformeal"></div>
+            <div id="timings"></div>
+            
             </div>
           `;
 
+            //attributes not into checkbox, placed into details tab
             const otherattributesjs = `<div>
 				<button class="categories2" disabled>${item.attributes.Alcohol}</button>
 				<button class="categories2" disabled>${item.attributes.RestaurantsAttire}</button>
 				</div>`;
 
+            /*
             const goodformealjs = `<div><div class="loading"></div>
 			<div id="Dessert"></div></div>`;
+*/
+            //checkbox attributes
 
             const checkboxvaluesjs = `
             <div>
@@ -208,6 +207,8 @@
               .getElementById("checkboxvalues")
               .appendChild(createElementFromHTML(checkboxvaluesjs));
 
+            //checkboxchecks
+
             if (item.attributes.RestaurantsReservations != undefined)
               document.getElementById(
                 "restarauntreservations"
@@ -255,6 +256,7 @@
                 item.attributes.RestaurantsDelivery
               );
 
+            //parts of the cost
             document
               .getElementById("averagecost_mealtimes")
               .appendChild(createElementFromHTML(averagecost_mealtimesjs));
@@ -268,53 +270,108 @@
                 .appendChild(createElementFromHTML(pricemarkjs));
             }
 
+             //timings implematation and display 
+            const timingsjs=`<div>Open:<div id="mondaytime"></div><div id="tuesdaytime"></div><div id="wednesdaytime"></div><div id="thursdaytime"></div>
+                              <div id="fridaytime"></div><div id="saturdaytime"></div><div id="sundaytime"></div></div>`;
+
+            document
+              .getElementById("timings")
+              .appendChild(createElementFromHTML(timingsjs));
+
+            
+            const mondayjs=`<div>Monday:${item.hours.Monday}<br></div>`;
+            const tuesdayjs=`<div>Tuesday:${item.hours.Tuesday}<br></div>`;
+            const wednesdayjs=`<div>Wednesday:${item.hours.Wednesday}<br></div>`;
+            const thursdayjs=`<div>Thursday:${item.hours.Thursday}<br></div>`;
+            const fridayjs=`<div>Friday:${item.hours.Friday}<br></div>`;
+            const saturdayjs=`<div>Saturday:${item.hours.Saturday}<br></div>`;
+            const sundayjs=`<div>Sunday:${item.hours.Sunday}<br></div>`;
+
+            if(item.hours.Monday!= undefined)  
+            document
+              .getElementById("mondaytime")
+              .appendChild(createElementFromHTML(mondayjs));
+
+            if(item.hours.Tuesday!= undefined)  
+            document
+              .getElementById("tuesdaytime")
+              .appendChild(createElementFromHTML(tuesdayjs));
+
+            if(item.hours.Wednesday!= undefined)  
+            document
+              .getElementById("wednesdaytime")
+              .appendChild(createElementFromHTML(wednesdayjs));     
+
+            if(item.hours.Thursday!= undefined)  
+            document
+              .getElementById("thursdaytime")
+              .appendChild(createElementFromHTML(thursdayjs));
+
+            if(item.hours.Friday!= undefined)  
+            document
+              .getElementById("fridaytime")
+              .appendChild(createElementFromHTML(fridayjs));
+
+            if(item.hours.Saturday!= undefined)  
+            document
+              .getElementById("saturdaytime")
+              .appendChild(createElementFromHTML(saturdayjs));     
+
+            if(item.hours.Sunday!= undefined)  
+            document
+              .getElementById("sundaytime")
+              .appendChild(createElementFromHTML(sundayjs));
+
+            //other attributes
             document
               .getElementById("otherattributes")
               .appendChild(createElementFromHTML(otherattributesjs));
 
+
+
+            /*
             document
               .getElementById("goodformeal")
               .appendChild(createElementFromHTML(goodformealjs));
-
+*/
             /*
 			      document
                 .getElementById("Dessert")
                 .appendChild(createElementFromHTML(Dessertjs));  
 */
             console.log(item.attributes);
-  
-            
-            const url1="http://localhost:3001/photos";
+
+            //photos api fetch placed in photos tab
+            const url1 = "http://localhost:3001/photos";
             fetch(url1)
               .then((res) => res.json())
               .then((data) => {
                 // iterate over items
                 const listitems = data.forEach((item2) => {
                   // create the elements
-                  if(item2.business_id==item.business_id){
-                  const photojs = `<div>
+                  if (item2.business_id == item.business_id) {
+                    const photojs = `<div>
                     
                         <img src="https://s3-media2.fl.yelpcdn.com/bphoto/${item2.photo_id}/o.jpg" alt="${item2.caption},${item2.label}">
                         
                   </div>`;
-                  
-                  
-                  document.getElementById("photos").appendChild(createElementFromHTML(photojs));}
+
+                    document
+                      .getElementById("photos")
+                      .appendChild(createElementFromHTML(photojs));
+                  }
                   console.log(item2);
                 });
               })
               .catch((err) => {
                 console.error("Error: ", err);
               });
-
-
           });
         })
         .catch((err) => {
           console.error("Error: ", err);
         });
     </script>
-    
   </body>
 
   <!--the tab script-->
