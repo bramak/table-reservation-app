@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="mainpagetry_2.css" />
+    <link rel="stylesheet" type="text/css" href="cssfiles/mainpagetry_2.css" />
   </head>
 
   <body>
@@ -68,11 +68,11 @@
             //header elements: image, tabs and tab contents
             const header = `<div>
             
-          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="food.png" />
+          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="imageicondata/food.png" />
             <h1>
               ${item.name}
               <button class="ratingbox" type="button" disabled>
-                <img src="star.svg" width="16" height="16" /> ${item.stars}
+                <img src="imageicondata/star.svg" width="16" height="16" /> ${item.stars}
               </button>
             </h1>
             <h2>
@@ -262,7 +262,7 @@
               .appendChild(createElementFromHTML(averagecost_mealtimesjs));
 
             const pricemarkjs =
-              '<img src="price_tag.png" width="16" height="16" />';
+              '<img src="imageicondata/price_tag.png" width="16" height="16" />';
 
             for (i = 0; i < item.attributes.RestaurantsPriceRange2; i++) {
               document
