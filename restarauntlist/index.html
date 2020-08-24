@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="cssfiles/titlecard.css" />
+    <link rel="stylesheet" type="text/css" href="../cssfiles/titlecard.css" />
   </head>
   <body>
     <div class="flex-container">
@@ -42,7 +42,7 @@
             const tile = `
           <div>
                 <div class="mainbox">
-                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="imageicondata/food.png" /></div>
+                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../imageicondata/food.png" /></div>
                 <div class="overlay"></div>
                 <div class="buttonoverlay">
                 <div class="restname">${item.name}</div>
@@ -51,7 +51,7 @@
                 </div>
                 </div>
                 </div>
-                <form action="restarauntdescriptions.html#/${item.business_id}">
+                <form action="../restarauntdescriptions/index.html#/${item.business_id}">
                 <div class="bottommain">
                 <button type="submit" class="button">View Details</button></form>
                 </div>
