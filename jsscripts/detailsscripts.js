@@ -56,3 +56,12 @@
   const appendNode = (parent, elem) => {
     parent.appendChild(elem);
   };
+
+  //url manipulation
+  function urlmanipulation(){
+    var a = window.location.href;
+    var urllength = a.length;
+    var locationid = a.substring(urllength - 22, urllength);
+    return locationid;
+    }
+

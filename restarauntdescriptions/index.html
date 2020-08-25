@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../cssfiles/mainpagetry_2.css" />
+    <link rel="stylesheet" type="text/css" href="../style/restarauntdescriptions.css" />
   </head>
-  <script src="../jsscripts/textmanipulation.js"></script>
+  <script src="../jsscripts/detailsscripts.js"></script>
   <body>
     <div id="headerdetails"></div>
 
     <script>
 
-      var a = window.location.href;
-      var urllength = a.length;
-      var locationid = a.substring(urllength - 22, urllength);
-
       //const div = document.querySelector("#headerdetails");
-      const url = "http://localhost:3001/business?business_id=" + locationid;
+      const url = "http://localhost:3001/business?business_id=" + urlmanipulation();
 
       //fetch buisness api script
       fetch(url)
@@ -97,10 +93,6 @@
 				<button class="categories2" disabled>${item.attributes.RestaurantsAttire}</button>
 				</div>`;
 
-            /*
-            const goodformealjs = `<div><div class="loading"></div>
-			<div id="Dessert"></div></div>`;
-*/
             //checkbox attributes
 
             const checkboxvaluesjs = `
