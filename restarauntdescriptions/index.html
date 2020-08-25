@@ -3,53 +3,11 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../cssfiles/mainpagetry_2.css" />
   </head>
-
+  <script src="../jsscripts/textmanipulation.js"></script>
   <body>
     <div id="headerdetails"></div>
 
     <script>
-      //convert string to bool
-      function converttobool(string) {
-        switch (string.toLowerCase().trim()) {
-          case "true":
-          case "yes":
-          case "1":
-            return true;
-          case "false":
-          case "no":
-          case "0":
-          case null:
-            return false;
-          default:
-            return Boolean(string);
-        }
-      }
-
-      //edit values with 'u in them
-      function fixtext(string) {
-        var val = string.replace("u'", " ");
-        val = val.replace("_", " ");
-        val = val.replace("'", " ");
-        val = val.replace("'", " ");
-        val = val.trim();
-        return val;
-      }
-
-      // create an element
-      const createNode = (elem) => {
-        return document.createElement(elem);
-      };
-
-      function createElementFromHTML(htmlString) {
-        var div = document.createElement("div");
-        div.innerHTML = htmlString.trim();
-        return div.firstChild;
-      }
-
-      // append an element to parent
-      const appendNode = (parent, elem) => {
-        parent.appendChild(elem);
-      };
 
       var a = window.location.href;
       var urllength = a.length;
@@ -327,18 +285,6 @@
               .getElementById("otherattributes")
               .appendChild(createElementFromHTML(otherattributesjs));
 
-
-
-            /*
-            document
-              .getElementById("goodformeal")
-              .appendChild(createElementFromHTML(goodformealjs));
-*/
-            /*
-			      document
-                .getElementById("Dessert")
-                .appendChild(createElementFromHTML(Dessertjs));  
-*/
             console.log(item.attributes);
 
             //photos api fetch placed in photos tab
@@ -373,21 +319,4 @@
         });
     </script>
   </body>
-
-  <!--the tab script-->
-  <script>
-    function openpage(evt, pagename) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(pagename).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-  </script>
 </html>
