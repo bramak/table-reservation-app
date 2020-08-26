@@ -13,10 +13,10 @@ html, body { height: 100%; }
     justify-content: center;
 }
   
-  .flex-container > div {
+  .flex-container .tile {
     line-height:0;
     margin: 20px;
-    max-width: 25vw;
+    flex: none;
   }
 
 

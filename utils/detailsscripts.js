@@ -10,7 +10,7 @@
       case "0":
       case null:
         return false;
-      default:
+      default: 
         return Boolean(string);
     }
   }

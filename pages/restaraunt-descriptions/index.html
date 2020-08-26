@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../style/restarauntdescriptions.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <script src="../jsscripts/detailsscripts.js"></script>
+  <script src="../../utils/detailsscripts.js"></script>
   <body>
     <div id="headerdetails"></div>
 
@@ -22,11 +22,11 @@
             //header elements: image, tabs and tab contents
             const header = `<div>
             
-          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../imageicondata/food.png" />
+          <img class="headingimage" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" />
             <h1>
               ${item.name}
               <button class="ratingbox" type="button" disabled>
-                <img src="../imageicondata/star.svg" width="16" height="16" /> ${item.stars}
+                <img src="../../imageicondata/star.svg" width="16" height="16" /> ${item.stars}
               </button>
             </h1>
             <h2>
@@ -212,7 +212,7 @@
               .appendChild(createElementFromHTML(averagecost_mealtimesjs));
 
             const pricemarkjs =
-              '<img src="../imageicondata/price_tag.png" width="16" height="16" />';
+              '<img src="../../imageicondata/price_tag.png" width="16" height="16" />';
 
             for (i = 0; i < item.attributes.RestaurantsPriceRange2; i++) {
               document

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../style/titlecard.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <script src="../jsscripts/detailsscripts.js"></script>
+  <script src="../../utils/detailsscripts.js"></script>
   <body>
-    <div class="flex-container">
-      <div id="headerdetails"></div>
+    <div id="headerdetails" class="flex-container">
     </div>
     
 
@@ -26,18 +25,18 @@
           const listitems = data.forEach((item) => {
             // create the elements
             const tile = `
-          <div>
+          <div class="tile">
                 <div class="mainbox">
-                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../imageicondata/food.png" /></div>
+                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
                 <div class="overlay"></div>
                 <div class="buttonoverlay">
                 <div class="restname">${item.name}</div>
                 <div class="ratingbox">
-                <img src="imageicondata/star.svg" width="16" height="16" /> ${item.stars}
+                <img src="../../imageicondata/star.svg" width="16" height="16" /> ${item.stars}
                 </div>
                 </div>
                 </div>
-                <form action="../restarauntdescriptions/index.html#/${item.business_id}">
+                <form action="../restaraunt-descriptions/index.html#/${item.business_id}">
                 <div class="bottommain">
                 <button type="submit" class="button">View Details</button></form>
                 </div>
