@@ -1,22 +1,117 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Restaraunts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
   </head>
   <script src="../../utils/detailsscripts.js"></script>
   <body>
-    <div id="headerdetails" class="flex-container">
-    </div>
     
+    <div class="tab" id="mytab">
+      <button class="hamburgermenu" onclick="tablinksdrop()">menu</button>
+      <!--<button class="navigation-filter" onclick="openNav()">Filter</button>-->
+      <button class="tablinks" onclick="openpage(event, 'Restaraunts')">
+        Restaraunts
+      </button>
+      <button class="tablinks" onclick="openpage(event, 'About-Us')">
+        About US
+      </button>
+      <!--<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i></a>-->
+    </div>
+
+    <div id="Restaraunts" class="tabcontent">
+      <button onclick="openNav()">Filter</button>
+      <div id="headerdetails" class="flex-container"></div>
+    </div>
+    <div id="About-Us" class="tabcontent">About-Us</div>
+
+    <div id="testmenu" class="sidetab">
+      <a href="javascript:void(0)" class="closebtn" onclick="tablinksclose()">×</a>
+      <ul class="no-bullets">
+      <li><button class="sidetablinks" onclick="openpage(event, 'Restaraunts')">
+        Restaraunts
+      </button></li>
+        <li>
+      <button class="sidetablinks" onclick="openpage(event, 'About-Us')">
+        About US
+      </button></li></ul>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <div class="info">
+        Will hold a form
+
+        <br />
+        <form onsubmit="filterresults()">
+          <label for="priceval"><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
+          <select name="pricerange" id="priceval">
+            <option value="6">6</option>
+            <option value="1">5</option>
+            <option value="2">4</option>
+            <option value="3">3</option>
+            <option value="4">2</option>
+            <option value="5">1</option>
+          </select>
+          <input type="text" id="myText" value="Mickey">
+<!--
+          <label class="container">Restaraunt Reservations
+            <input type="checkbox" id="restarauntreservations">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Caters
+            <input type="checkbox" id="caters">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Table Service
+            <input type="checkbox" id="tableservice">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Take Out
+            <input type="checkbox" id="takeout">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container"> OutdoorSeating
+            <input type="checkbox" id="outdoorseating">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container"> Bike Parking
+            <input type="checkbox" id="bikeparking">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container"> Has Tv
+            <input type="checkbox" id="hastv">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Good For Kids
+            <input type="checkbox" id="goodforkids">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Good For Groups
+            <input type="checkbox" id="goodforgroups">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Delivery
+            <input type="checkbox" id="delivery">
+            <span class="checkmark"></span>
+        </label>  
+-->
+  <input type="submit" value="Filterresults">
+        </form>
+      </div>
+    </div>
 
     <script>
-
       // List Element
       const ul = document.querySelector("#business");
 
       // API URL
       const url = "http://localhost:3001/business";
 
+      var price=0;
       // make the API call
       fetch(url)
         .then((res) => res.json())
@@ -24,8 +119,12 @@
           // iterate over items
           const listitems = data.forEach((item) => {
             // create the elements
+            
             const tile = `
+            
           <div class="tile">
+          ${price}
+          ${item.attributes.RestaurantsPriceRange2}
                 <div class="mainbox">
                 <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
                 <div class="overlay"></div>
@@ -44,14 +143,63 @@
         </div>
         `;
             console.log(item);
+            if(price==0){ 
             document
               .getElementById("headerdetails")
+              .appendChild(createElementFromHTML(tile));}
+            else{
+              if(item.attributes.RestaurantsPriceRange2!=undefined){
+              if(item.attributes.RestaurantsPriceRange2==price)
+              document
+              .getElementById("headerdetails")
               .appendChild(createElementFromHTML(tile));
+              }
+            }  
+
+              
+
           });
         })
         .catch((err) => {
           console.error("Error: ", err);
         });
+
+      //sidebar
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+
+      //menu
+      function tablinksdrop() {
+        document.getElementById("testmenu").style.width = "150px";
+        document.getElementById("main").style.marginLeft = "150px";
+      }
+      function tablinksclose() {
+        document.getElementById("testmenu").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+
+      function filterresults(){
+        var price=document.getElementById("priceval").value;
+        setStorage(price);
+        openpage(event, 'Restaraunts');
+      }
+      //responsive list
+      /*
+        function myFunction() {
+          var x = document.getElementById("mytab");
+          if (x.className === "tab") {
+            x.className += " responsive";
+          } else {
+            x.className = "tab";
+          }
+        }*/
     </script>
   </body>
 </html>
