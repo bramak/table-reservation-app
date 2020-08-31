@@ -10,7 +10,7 @@
   <body>
     
     <div class="tab" id="mytab">
-      <button class="hamburgermenu" onclick="tablinksdrop()">menu</button>
+      <button class="hamburgermenu" onclick="tablinksdrop()"><img src="../../imageicondata/hamburger.png" width="20" height="20" class="price_tag" /></button>
       <!--<button class="navigation-filter" onclick="openNav()">Filter</button>-->
       <button class="tablinks" onclick="openpage(event, 'Restaraunts')">
         Restaraunts
@@ -100,6 +100,7 @@
       // API URL
       const url = "http://localhost:3001/business";
 
+      var valuere=3;
       var price=0;
       // make the API call
       fetch(url)
@@ -168,6 +169,7 @@
         document.getElementById("testmenu").style.width = "150px";
         document.getElementById("main").style.marginLeft = "150px";
       }
+
       function tablinksclose() {
         document.getElementById("testmenu").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
