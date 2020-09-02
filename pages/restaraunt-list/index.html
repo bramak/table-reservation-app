@@ -4,25 +4,21 @@
     <title>Restaraunts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
   </head>
   <script src="../../utils/detailsscripts.js"></script>
   <body>
     
     <div class="tab" id="mytab">
       <button class="hamburgermenu" onclick="tablinksdrop()"><img src="../../imageicondata/hamburger.png" width="20" height="20" class="price_tag" /></button>
-      <!--<button class="navigation-filter" onclick="openNav()">Filter</button>-->
       <button class="tablinks" onclick="openpage(event, 'Restaraunts')">
         Restaraunts
       </button>
       <button class="tablinks" onclick="openpage(event, 'About-Us')">
         About US
       </button>
-      <!--<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i></a>-->
     </div>
-
-    <div id="Restaraunts" class="tabcontent">
+   
+    <div id="Restaraunts" class="tabcontent" id="defaultOpen">
       <button onclick="openNav()">Filter</button>
       <div id="headerdetails" class="flex-container"></div>
     </div>
@@ -31,7 +27,7 @@
     <div id="testmenu" class="sidetab">
       <a href="javascript:void(0)" class="closebtn" onclick="tablinksclose()">×</a>
       <ul class="no-bullets">
-      <li><button class="sidetablinks" onclick="openpage(event, 'Restaraunts')">
+      <li><button class="sidetablinks" onclick="openpage(event, 'Restaraunts')" id="defaultOpen"> 
         Restaraunts
       </button></li>
         <li>
@@ -40,15 +36,15 @@
       </button></li></ul>
     </div>
 
+    <!--filterpage sidebar-->
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <div class="info">
-        Will hold a form
-
-        <br />
-        <form onsubmit="filterresults()">
+        Choose Your Filters
+        <br>
+        <form>
           <label for="priceval"></label><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
-          <select name="pricerange" id="priceval">
+          <select name="priceval" id="priceval">
             <option value="6">6</option>
             <option value="5">5</option>
             <option value="2">4</option>
@@ -88,12 +84,23 @@
             <option value="50">50+</option>
             <option value="100">100+</option>
           </select>
-  <input type="submit" value="Filter Results">
+  <button type="button" value="Filter Results" onclick="filterresults">Filter Results</button>
         </form>
+        
       </div>
+     <!-- <div id="filteredresults" class="flex-container"></div>-->
     </div>
 
     <script>
+          var checkoffiler=0;
+          var pricerangeval=6;
+          var ratingval=0;
+          var reviewsmin=0;
+          var restresvermanditory=false;
+          var alcoholmanditory=false;
+          var hasdeliverymanditory=false;
+          var takeOutmanditory=false;
+
       // List Element
       const ul = document.querySelector("#business");
 
@@ -110,10 +117,11 @@
           const listitems = data.forEach((item) => {
             // create the elements
             
+          const tile2=`loadingissues`;  
             const tile = `
             
           <div class="tile">
-          ${item.attributes.RestaurantsPriceRange2}
+            ${item.stars}
                 <div class="mainbox">
                 <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
                 <div class="overlay"></div>
@@ -131,31 +139,28 @@
                 <br><br><br><br>
         </div>
         `;
-            console.log(item);
-            if(price==0){ 
+            console.log(item); 
             document
               .getElementById("headerdetails")
-              .appendChild(createElementFromHTML(tile));}
-            else{
-              if(item.attributes.RestaurantsPriceRange2!=undefined){
-              if(item.attributes.RestaurantsPriceRange2==price)
-              document
-              .getElementById("headerdetails")
               .appendChild(createElementFromHTML(tile));
-              }
-            }  
-
-              
-
+   
           });
         })
         .catch((err) => {
           console.error("Error: ", err);
         });
 
+
+      document.getElementById("defaultOpen").click(); 
+
       //sidebar
       function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function openNavresults() {
+        document.getElementById("mySidebar").style.width = "100%";
         document.getElementById("main").style.marginLeft = "250px";
       }
 
@@ -175,20 +180,23 @@
         document.getElementById("main").style.marginLeft = "0";
       }
 
+
+      //filter display
+      const tilefiler=`<div>filers</div>`;
+
       function filterresults(){
-        setStorage();
-        openpage(event, 'Restaraunts');
+        checkoffiler=1;
+         pricerangeval=6;
+           ratingval=3;
+          reviewsmin=0;
+          restresvermanditory=false;
+          alcoholmanditory=false;
+         hasdeliverymanditory=false;
+          takeOutmanditory=false;
+        //  openNavresults();
+         // document.getElementById("filteredresult").appendChild(createElementFromHTML(tile));
+        
       }
-      //responsive list
-      /*
-        function myFunction() {
-          var x = document.getElementById("mytab");
-          if (x.className === "tab") {
-            x.className += " responsive";
-          } else {
-            x.className = "tab";
-          }
-        }*/
     </script>
   </body>
 </html>
