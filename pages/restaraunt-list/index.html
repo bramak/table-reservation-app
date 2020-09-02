@@ -10,7 +10,7 @@
     
     <div class="tab" id="mytab">
       <button class="hamburgermenu" onclick="tablinksdrop()"><img src="../../imageicondata/hamburger.png" width="20" height="20" class="price_tag" /></button>
-      <div id="btn" class="tablinks">
+      <div id="btn" class="filterbutton">
         <div id="top"></div>
         <div id="middle"></div>
         <div id="bottom"></div>
@@ -23,8 +23,9 @@
       </button>
     </div>
    
+    
     <div id="Restaraunts" class="tabcontent" id="defaultOpen">
-     <!-- <button onclick="openNav()">Filter</button> -->
+     <button onclick="openNav()" class="hamburgermenu">Filter</button>
       <div id="headerdetails" class="flex-container"></div>
     </div>
     <div id="About-Us" class="tabcontent">About-Us</div>
@@ -45,6 +46,7 @@
     <div id="box">
       <div id="items">
         <div class="item"><form>
+          Select Filters<br>
           <label for="priceval"></label><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
           <select name="priceval" id="priceval">
             <option value="6">6</option>
