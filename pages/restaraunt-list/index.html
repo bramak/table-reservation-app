@@ -1,13 +1,10 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Restaraunts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <script src="../../utils/detailsscripts.js"></script>
   <body>
-    
     <div class="tab" id="mytab">
       <button class="hamburgermenu" onclick="tablinksdrop()"><img src="../../imageicondata/hamburger.png" width="20" height="20" class="price_tag" /></button>
       <div id="btn" class="filterbutton">
@@ -66,7 +63,7 @@
             <option value="6">6</option>
           </select>
           <label class="container">Restaraunt Reservations
-            <input type="checkbox" name="restarauntreservations" id="restarauntreservations">
+            <input type="checkbox" name="restaurantreservations" id="restaurantreservations">
             <span class="checkmark"></span>
         </label>
         <label class="container">Has Alcohol
@@ -88,7 +85,7 @@
             <option value="50">50+</option>
             <option value="100">100+</option>
           </select>
-  <button type="button" id="FilterResults" onclick="filterresults()">Filter Results</button>
+  <button id="FilterResults" type="button" onclick="filterresults()">Filter Results</button>
         </form></div>
       </div>
     </div>
@@ -100,7 +97,7 @@
       <div class="info">
         Choose Your Filters
         <br>
-        <form>
+        <!-- <form>
           <label for="priceval"></label><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
           <select name="priceval" id="priceval">
             <option value="6">6</option>
@@ -142,22 +139,22 @@
             <option value="50">50+</option>
             <option value="100">100+</option>
           </select>
-  <button type="button" id="FilterResults" onclick="filterresults()">Filter Results</button>
-        </form>
+  <button type="button" id="FilterResults">Filter Results</button>
+        </form> -->
         
       </div>
      <!-- <div id="filteredresults" class="flex-container"></div>-->
     </div>
-
-    <script>
-          var checkoffiler=0;
-          var pricerangeval=6;
-          var ratingval=0;
-          var reviewsmin=0;
-          var restresvermanditory=false;
-          var alcoholmanditory=false;
-          var hasdeliverymanditory=false;
-          var takeOutmanditory=false;
+    <script src="../../utils/detailsscripts.js"></script>
+    <script type="text/javascript">
+      var checkoffiler = 0;
+      var pricerangeval = 6;
+      var ratingval = 0;
+      var reviewsmin = 0;
+      var restresvermanditory = false;
+      var alcoholmanditory = false;
+      var hasdeliverymanditory = false;
+      var takeOutmanditory = false;
 
       // List Element
       const ul = document.querySelector("#business");
@@ -165,51 +162,59 @@
       // API URL
       const url = "http://localhost:3001/business";
 
-      var valuere=3;
-      var price=0;
-      // make the API call
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
+      const deliveryFilterDOM = document.getElementById("delivery");
+      const takeOutFilterDOM = document.getElementById("takeout");
+      const alcoholFilterDOM = document.getElementById("alcohol");
+      const reservationFilterDOM = document.getElementById("restaurantreservations");
+      const tileRootDOM = document.getElementById("headerdetails")
+
+      const renderTiles = (data) => {
           // iterate over items
           const listitems = data.forEach((item) => {
-            // create the elements
-            
-          const tile2=`loadingissues`;  
-            const tile = `
-            
-          <div class="tile">
-            ${item.stars}
-                <div class="mainbox">
-                <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
-                <div class="overlay"></div>
-                <div class="buttonoverlay">
-                <div class="restname">${item.name}</div>
-                <div class="ratingbox">
-                <img src="../../imageicondata/star.svg" width="16" height="16" /> ${item.stars}
-                </div>
-                </div>
-                </div>
-                <form action="../restaraunt-descriptions/index.html#/${item.business_id}">
-                <div class="bottommain">
-                <button type="submit" class="button">View Details</button></form>
-                </div>
-                <br><br><br><br>
-        </div>
-        `;
-            console.log(item); 
-            document
-              .getElementById("headerdetails")
-              .appendChild(createElementFromHTML(tile));
-   
-          });
-        })
+          // create the elements
+          const tile = `  
+              <div class="tile">
+                ${item.stars}
+                    <div class="mainbox">
+                    <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
+                    <div class="overlay"></div>
+                    <div class="buttonoverlay">
+                    <div class="restname">${item.name}</div>
+                    <div class="ratingbox">
+                    <img src="../../imageicondata/star.svg" width="16" height="16" /> ${item.stars}
+                    </div>
+                    </div>
+                    </div>
+                    <form action="../restaraunt-descriptions/index.html#/${item.business_id}">
+                    <div class="bottommain">
+                    <button type="submit" class="button">View Details</button></form>
+                    </div>
+                    <br><br><br><br>
+            </div>
+            `;
+          document
+            .getElementById("headerdetails")
+            .appendChild(createElementFromHTML(tile));
+        });
+      }
+
+      var valuere = 3;
+      var price = 0;
+      // make the API call
+
+      function getData() {
+        return fetch(url)
+        .then((res) => res.json())
         .catch((err) => {
           console.error("Error: ", err);
         });
+      }
 
+      getData().then((data) => {
+          renderTiles(data)
+        })
 
-      document.getElementById("defaultOpen").click(); 
+      document.getElementById("defaultOpen").click();
 
       //sidebar
       function openNav() {
@@ -238,56 +243,60 @@
         document.getElementById("main").style.marginLeft = "0";
       }
 
-
       //filter display
-      const tilefiler=`<div>filers</div>`;
+      const tilefiler = `<div>filers</div>`;
 
-      function filterresults(){
-        checkoffiler=1;
-         pricerangeval=6;
-           ratingval=3;
-          reviewsmin=0;
-          restresvermanditory=false;
-          alcoholmanditory=false;
-         hasdeliverymanditory=false;
-          takeOutmanditory=false;
-        //  openNavresults();
-         // document.getElementById("filteredresult").appendChild(createElementFromHTML(tile));
+      function filterresults() {
+        const isDeliveryNeeded = deliveryFilterDOM.checked;
+        const isTakeOutNeeded = takeOutFilterDOM.checked;
+        const isALcoholServed = alcoholFilterDOM.checked;
+        const isReservationAllowed = reservationFilterDOM.checked;
+        getData().then(data => {
+          const filteredResults = data.filter(item => {
+            const { RestaurantsDelivery = "False", RestaurantsTakeOut = "False" } = item.attributes;
+            if(isDeliveryNeeded === converttobool(RestaurantsDelivery) && isTakeOutNeeded === converttobool(RestaurantsTakeOut)) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+          tileRootDOM.innerHTML = "";
+          renderTiles(filteredResults);
+        })
         
+        //  openNavresults();
+        // document.getElementById("filteredresult").appendChild(createElementFromHTML(tile));
       }
 
-//other filtersidebar-inuse
+      //other filtersidebar-inuse
 
-var sidebarBox = document.querySelector('#box');
-var sidebarBtn = document.querySelector('#btn');
-var pageWrapper = document.querySelector('#main-content');
+      var sidebarBox = document.querySelector("#box");
+      var sidebarBtn = document.querySelector("#btn");
+      var pageWrapper = document.querySelector("#main-content");
 
-sidebarBtn.addEventListener('click', function(event) {
+      sidebarBtn.addEventListener("click", function (event) {
+        if (this.classList.contains("active")) {
+          this.classList.remove("active");
+          sidebarBox.classList.remove("active");
+        } else {
+          this.classList.add("active");
+          sidebarBox.classList.add("active");
+        }
+      });
 
-  if (this.classList.contains('active')) {
-      this.classList.remove('active');
-      sidebarBox.classList.remove('active');
-  } else {
-      this.classList.add('active');
-      sidebarBox.classList.add('active');
-  }
-});
+      pageWrapper.addEventListener("click", function (event) {
+        if (sidebarBox.classList.contains("active")) {
+          sidebarBtn.classList.remove("active");
+          sidebarBox.classList.remove("active");
+        }
+      });
 
-pageWrapper.addEventListener('click', function(event) {
-
-  if (sidebarBox.classList.contains('active')) {
-      sidebarBtn.classList.remove('active');
-      sidebarBox.classList.remove('active');
-  }
-});
-
-window.addEventListener('keydown', function(event) {
-
-  if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
-      sidebarBtn.classList.remove('active');
-      sidebarBox.classList.remove('active');
-  }
-});
+      window.addEventListener("keydown", function (event) {
+        if (sidebarBox.classList.contains("active") && event.keyCode === 27) {
+          sidebarBtn.classList.remove("active");
+          sidebarBox.classList.remove("active");
+        }
+      });
     </script>
   </body>
 </html>
