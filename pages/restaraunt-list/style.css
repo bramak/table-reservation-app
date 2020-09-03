@@ -202,6 +202,16 @@ html, body { height: 100%; }
       font-size: 17px;
     }
 
+    .tab .filterbutton2 {
+      float: left;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
 
 /*sidetab*/
 
@@ -322,6 +332,10 @@ html, body { height: 100%; }
 
   /*checkboxes*/
 
+ .labelsForDropdown{
+  font-size: 22px;
+ }
+
 .container {
   text-align: left;
   display: block;
@@ -401,9 +415,12 @@ input[type="checkbox"][readonly] {
 .tab .hamburgermenu:hover {
   background-color: rgb(138, 131, 131);
 }
+
   /* resposivedesign */
   @media screen and (min-width:801px){
-.hamburgermenu { display: none;}}
+.hamburgermenu { display: none;}
+
+}
   
   /*changes width based on screen size*/
   @media screen and (max-width:800px) {
@@ -413,6 +430,7 @@ input[type="checkbox"][readonly] {
     }
     .navigation-filter { display: none}
     .hamburgermenu {display: inline;}
+    .tablinks {display: none;}
   }
 
   /* side bar with transform */

@@ -14,6 +14,11 @@
           class="price_tag"
         />
       </button>
+      <div id="btn" class="filterbutton2">
+        <div id="top"></div>
+        <div id="middle"></div>
+        <div id="bottom"></div>
+      </div>
       <div id="btn" class="filterbutton">
         <div id="top"></div>
         <div id="middle"></div>
@@ -26,9 +31,9 @@
         About US
       </button>
     </div>
-
     <div id="Restaraunts" class="tabcontent" id="defaultOpen">
       <!--   <button onclick="openNav()" class="hamburgermenu">Filter</button> -->
+      <div id="empty"></div>
       <div id="headerdetails" class="flex-container"></div>
     </div>
     <div id="About-Us" class="tabcontent">About-Us</div>
@@ -97,11 +102,6 @@
               <span class="checkmark"></span>
             </label>
             <label class="container"
-              >Has Alcohol
-              <input type="checkbox" name="alcohol" id="alcohol" />
-              <span class="checkmark"></span>
-            </label>
-            <label class="container"
               >Delivery
               <input type="checkbox" name="delivery" id="delivery" />
               <span class="checkmark"></span>
@@ -111,7 +111,7 @@
               <input type="checkbox" name="takeout" id="takeout" />
               <span class="checkmark"></span>
             </label>
-            <label for="reviewsmin">Reviews</label>
+            <label for="reviewsmin" class ="labelsForDropdown">Reviews</label>
             <select name="reviewsmin" id="reviewsmin">
               <option value="0">0+</option>
               <option value="10">10+</option>
@@ -122,6 +122,13 @@
               Filter Results
             </button>
           </form>
+          <button
+            id="clearFilters"
+            type="button"
+            onclick="window.location.reload()"
+          >
+            Clear Filters
+          </button>
         </div>
       </div>
     </div>
@@ -129,12 +136,12 @@
     <!--filterpage sidebar- to be phased out-->
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <div class="info">
-        Choose Your Filters
-      </div>
+      <div class="info">Choose Your Filters</div>
     </div>
+
     <script src="../../utils/detailsscripts.js"></script>
     <script type="text/javascript">
+      var check=0;
       // List Element
       const ul = document.querySelector("#business");
 
@@ -153,6 +160,7 @@
 
       const tileRootDOM = document.getElementById("headerdetails");
 
+      const emptytiles = `<div><h2>There are no results that match this search.</h2></div>`;
       const renderTiles = (data) => {
         // iterate over items
         const listitems = data.forEach((item) => {
@@ -173,7 +181,6 @@
                     <div class="bottommain">
                     <button type="submit" class="button">View Details</button></form>
                     </div>
-                    <br><br><br><br>
             </div>
             `;
           document
@@ -200,22 +207,6 @@
 
       document.getElementById("defaultOpen").click();
 
-      //sidebar
-      function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
-
-      function openNavresults() {
-        document.getElementById("mySidebar").style.width = "100%";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
-
-      function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-      }
-
       //menu
       function tablinksdrop() {
         document.getElementById("testmenu").style.width = "150px";
@@ -231,6 +222,8 @@
       const tilefiler = `<div>filers</div>`;
 
       function filterresults() {
+        check = 0;
+        empty.innerHTML="";
         const isDeliveryNeeded = deliveryFilterDOM.checked;
         const isTakeOutNeeded = takeOutFilterDOM.checked;
         //   const isALcoholServed = alcoholFilterDOM.checked;
@@ -243,18 +236,19 @@
             const {
               RestaurantsDelivery = "False",
               RestaurantsTakeOut = "False",
-              RestaurantsReservations ="False",
+              RestaurantsReservations = "False",
               RestaurantsPriceRange2 = 6,
             } = item.attributes;
-            const {
-              stars = 1,
-              review_count = 0,
-            } =item;
+            const { stars = 1, review_count = 0 } = item;
             if (
               isDeliveryNeeded === converttobool(RestaurantsDelivery) &&
               isTakeOutNeeded === converttobool(RestaurantsTakeOut) &&
-              isReservationAllowed === converttobool(RestaurantsReservations)
+              isReservationAllowed === converttobool(RestaurantsReservations) &&
+              minStars <= stars &&
+              minReviewsrequired <= review_count &&
+              maxPriceRange >= RestaurantsPriceRange2
             ) {
+              check =1;
               return true;
             } else {
               return false;
@@ -262,6 +256,10 @@
           });
           tileRootDOM.innerHTML = "";
           renderTiles(filteredResults);
+          if (check === 0){
+            document.getElementById("empty").appendChild(createElementFromHTML(emptytiles));
+          }
+          document.getElementById("btn").click();
         });
 
         //  openNavresults();

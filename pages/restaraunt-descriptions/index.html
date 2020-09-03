@@ -37,7 +37,7 @@
             </h2>
 
             <div class="tab">
-            <button class="tablinks" onclick="openpage(event, 'Details')">
+            <button class="tablinks" onclick="openpage(event, 'Details')" id ="defaultOpen">
               Details
             </button>
             <button class="tablinks" onclick="openpage(event, 'Photos')">
@@ -55,7 +55,7 @@
             <h3><div id="otherattributes"></div>
             <div id="checkboxvalues"></div></h3>
             <hr>
-            <br>
+            
           </div>
 
           <div id="Photos" class="tabcontent">
@@ -73,7 +73,6 @@
           <div id="Reviews" class="tabcontent">
             <h3>Reviews</h3>
           </div>
-
             </div>`;
 
             //averagecost and mealtimes div, placed into details tab
@@ -87,6 +86,7 @@
             </div>
           `;
 
+          
             //attributes not into checkbox, placed into details tab
             const otherattributesjs = `<div>
 				<button class="categories2" disabled>${item.attributes.Alcohol}</button>
@@ -221,7 +221,7 @@
             }
 
              //timings implematation and display 
-            const timingsjs=`<div>Open:<div id="mondaytime"></div><div id="tuesdaytime"></div><div id="wednesdaytime"></div><div id="thursdaytime"></div>
+            const timingsjs=`<div class="timingOfOpen">Open:<div id="mondaytime"></div><div id="tuesdaytime"></div><div id="wednesdaytime"></div><div id="thursdaytime"></div>
                               <div id="fridaytime"></div><div id="saturdaytime"></div><div id="sundaytime"></div></div>`;
 
             document
@@ -229,13 +229,13 @@
               .appendChild(createElementFromHTML(timingsjs));
 
             
-            const mondayjs=`<div>Monday:${item.hours.Monday}<br></div>`;
-            const tuesdayjs=`<div>Tuesday:${item.hours.Tuesday}<br></div>`;
-            const wednesdayjs=`<div>Wednesday:${item.hours.Wednesday}<br></div>`;
-            const thursdayjs=`<div>Thursday:${item.hours.Thursday}<br></div>`;
-            const fridayjs=`<div>Friday:${item.hours.Friday}<br></div>`;
-            const saturdayjs=`<div>Saturday:${item.hours.Saturday}<br></div>`;
-            const sundayjs=`<div>Sunday:${item.hours.Sunday}<br></div>`;
+            const mondayjs=`<div >Monday:${item.hours.Monday}</div>`;
+            const tuesdayjs=`<div>Tuesday:${item.hours.Tuesday}</div>`;
+            const wednesdayjs=`<div >Wednesday:${item.hours.Wednesday}</div>`;
+            const thursdayjs=`<div >Thursday:${item.hours.Thursday}</div>`;
+            const fridayjs=`<div >Friday:${item.hours.Friday}</div>`;
+            const saturdayjs=`<div>Saturday:${item.hours.Saturday}</div>`;
+            const sundayjs=`<div>Sunday:${item.hours.Sunday}</div>`;
 
             if(item.hours.Monday!= undefined)  
             document
