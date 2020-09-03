@@ -6,7 +6,14 @@
   </head>
   <body>
     <div class="tab" id="mytab">
-      <button class="hamburgermenu" onclick="tablinksdrop()"><img src="../../imageicondata/hamburger.png" width="20" height="20" class="price_tag" /></button>
+      <button class="hamburgermenu" onclick="tablinksdrop()">
+        <img
+          src="../../imageicondata/hamburger.png"
+          width="20"
+          height="20"
+          class="price_tag"
+        />
+      </button>
       <div id="btn" class="filterbutton">
         <div id="top"></div>
         <div id="middle"></div>
@@ -19,143 +26,115 @@
         About US
       </button>
     </div>
-   
-    
+
     <div id="Restaraunts" class="tabcontent" id="defaultOpen">
-     <button onclick="openNav()" class="hamburgermenu">Filter</button>
+      <!--   <button onclick="openNav()" class="hamburgermenu">Filter</button> -->
       <div id="headerdetails" class="flex-container"></div>
     </div>
     <div id="About-Us" class="tabcontent">About-Us</div>
 
     <div id="testmenu" class="sidetab">
-      <a href="javascript:void(0)" class="closebtn" onclick="tablinksclose()">×</a>
+      <a href="javascript:void(0)" class="closebtn" onclick="tablinksclose()"
+        >×</a
+      >
       <ul class="no-bullets">
-      <li><button class="sidetablinks" onclick="openpage(event, 'Restaraunts')" id="defaultOpen"> 
-        Restaraunts
-      </button></li>
         <li>
-      <button class="sidetablinks" onclick="openpage(event, 'About-Us')">
-        About US
-      </button></li></ul>
+          <button
+            class="sidetablinks"
+            onclick="openpage(event, 'Restaraunts')"
+            id="defaultOpen"
+          >
+            Restaraunts
+          </button>
+        </li>
+        <li>
+          <button class="sidetablinks" onclick="openpage(event, 'About-Us')">
+            About US
+          </button>
+        </li>
+      </ul>
     </div>
 
     <!--filterpage, sidebar to be integrated-->
     <div id="box">
       <div id="items">
-        <div class="item"><form>
-          Select Filters<br>
-          <label for="priceval"></label><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
-          <select name="priceval" id="priceval">
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="2">4</option>
-            <option value="3">3</option>
-            <option value="4">2</option>
-            <option value="1">1</option>
-          </select><br>
-          <label for="rating"><img src="../../imageicondata/star.svg" width="16" height="16" /></label>
-          <select name="rating" id="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-          <label class="container">Restaraunt Reservations
-            <input type="checkbox" name="restaurantreservations" id="restaurantreservations">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">Has Alcohol
-          <input type="checkbox" name="alcohol" id="alcohol">
-          <span class="checkmark"></span>
-      </label>
-      <label class="container">Delivery
-        <input type="checkbox" name="delivery" id="delivery">
-        <span class="checkmark"></span>
-    </label>
-    <label class="container">Take Out
-      <input type="checkbox" name="takeout" id="takeout">
-      <span class="checkmark"></span>
-  </label>
-    <label for="reviewsmin">Reviews</label>
-          <select name="reviewsmin" id="reviewsmin">
-            <option value="0">0+</option>
-            <option value="10">10+</option>
-            <option value="50">50+</option>
-            <option value="100">100+</option>
-          </select>
-  <button id="FilterResults" type="button" onclick="filterresults()">Filter Results</button>
-        </form></div>
+        <div class="item">
+          <form>
+            Select Filters<br />
+            <label for="priceval"
+              ><img
+                src="../../imageicondata/price_tag.png"
+                width="16"
+                height="16"
+                class="price_tag"
+            /></label>
+            <select name="priceval" id="priceval">
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="2">4</option>
+              <option value="3">3</option>
+              <option value="4">2</option>
+              <option value="1">1</option></select
+            ><br />
+            <label for="rating"
+              ><img src="../../imageicondata/star.svg" width="16" height="16"
+            /></label>
+            <select name="rating" id="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <label class="container"
+              >Restaraunt Reservations
+              <input
+                type="checkbox"
+                name="restaurantreservations"
+                id="restaurantreservations"
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container"
+              >Has Alcohol
+              <input type="checkbox" name="alcohol" id="alcohol" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container"
+              >Delivery
+              <input type="checkbox" name="delivery" id="delivery" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container"
+              >Take Out
+              <input type="checkbox" name="takeout" id="takeout" />
+              <span class="checkmark"></span>
+            </label>
+            <label for="reviewsmin">Reviews</label>
+            <select name="reviewsmin" id="reviewsmin">
+              <option value="0">0+</option>
+              <option value="10">10+</option>
+              <option value="50">50+</option>
+              <option value="100">100+</option>
+            </select>
+            <button id="FilterResults" type="button" onclick="filterresults()">
+              Filter Results
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-    
 
     <!--filterpage sidebar- to be phased out-->
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <div class="info">
         Choose Your Filters
-        <br>
-        <!-- <form>
-          <label for="priceval"></label><img src="../../imageicondata/price_tag.png" width="16" height="16" class="price_tag" /></label>
-          <select name="priceval" id="priceval">
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="2">4</option>
-            <option value="3">3</option>
-            <option value="4">2</option>
-            <option value="1">1</option>
-          </select><br>
-          <label for="rating"><img src="../../imageicondata/star.svg" width="16" height="16" /></label>
-          <select name="rating" id="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-          <label class="container">Restaraunt Reservations
-            <input type="checkbox" name="restarauntreservations" id="restarauntreservations">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">Has Alcohol
-          <input type="checkbox" name="alcohol" id="alcohol">
-          <span class="checkmark"></span>
-      </label>
-      <label class="container">Delivery
-        <input type="checkbox" name="delivery" id="delivery">
-        <span class="checkmark"></span>
-    </label>
-    <label class="container">Take Out
-      <input type="checkbox" name="takeout" id="takeout">
-      <span class="checkmark"></span>
-  </label>
-    <label for="reviewsmin">Reviews</label>
-          <select name="reviewsmin" id="reviewsmin">
-            <option value="0">0+</option>
-            <option value="10">10+</option>
-            <option value="50">50+</option>
-            <option value="100">100+</option>
-          </select>
-  <button type="button" id="FilterResults">Filter Results</button>
-        </form> -->
-        
       </div>
-     <!-- <div id="filteredresults" class="flex-container"></div>-->
     </div>
     <script src="../../utils/detailsscripts.js"></script>
     <script type="text/javascript">
-      var checkoffiler = 0;
-      var pricerangeval = 6;
-      var ratingval = 0;
-      var reviewsmin = 0;
-      var restresvermanditory = false;
-      var alcoholmanditory = false;
-      var hasdeliverymanditory = false;
-      var takeOutmanditory = false;
-
       // List Element
       const ul = document.querySelector("#business");
 
@@ -164,17 +143,22 @@
 
       const deliveryFilterDOM = document.getElementById("delivery");
       const takeOutFilterDOM = document.getElementById("takeout");
-      const alcoholFilterDOM = document.getElementById("alcohol");
-      const reservationFilterDOM = document.getElementById("restaurantreservations");
-      const tileRootDOM = document.getElementById("headerdetails")
+      //  const alcoholFilterDOM = document.getElementById("alcohol");
+      const reservationFilterDOM = document.getElementById(
+        "restaurantreservations"
+      );
+      const pricevalFilterDOM = document.getElementById("priceval");
+      const ratingFilterDOM = document.getElementById("rating");
+      const reviewsminFilterDOM = document.getElementById("reviewsmin");
+
+      const tileRootDOM = document.getElementById("headerdetails");
 
       const renderTiles = (data) => {
-          // iterate over items
-          const listitems = data.forEach((item) => {
+        // iterate over items
+        const listitems = data.forEach((item) => {
           // create the elements
           const tile = `  
               <div class="tile">
-                ${item.stars}
                     <div class="mainbox">
                     <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
                     <div class="overlay"></div>
@@ -196,7 +180,7 @@
             .getElementById("headerdetails")
             .appendChild(createElementFromHTML(tile));
         });
-      }
+      };
 
       var valuere = 3;
       var price = 0;
@@ -204,15 +188,15 @@
 
       function getData() {
         return fetch(url)
-        .then((res) => res.json())
-        .catch((err) => {
-          console.error("Error: ", err);
-        });
+          .then((res) => res.json())
+          .catch((err) => {
+            console.error("Error: ", err);
+          });
       }
 
       getData().then((data) => {
-          renderTiles(data)
-        })
+        renderTiles(data);
+      });
 
       document.getElementById("defaultOpen").click();
 
@@ -249,12 +233,28 @@
       function filterresults() {
         const isDeliveryNeeded = deliveryFilterDOM.checked;
         const isTakeOutNeeded = takeOutFilterDOM.checked;
-        const isALcoholServed = alcoholFilterDOM.checked;
+        //   const isALcoholServed = alcoholFilterDOM.checked;
         const isReservationAllowed = reservationFilterDOM.checked;
-        getData().then(data => {
-          const filteredResults = data.filter(item => {
-            const { RestaurantsDelivery = "False", RestaurantsTakeOut = "False" } = item.attributes;
-            if(isDeliveryNeeded === converttobool(RestaurantsDelivery) && isTakeOutNeeded === converttobool(RestaurantsTakeOut)) {
+        const maxPriceRange = pricevalFilterDOM.value;
+        const minStars = ratingFilterDOM.value;
+        const minReviewsrequired = reviewsminFilterDOM.value;
+        getData().then((data) => {
+          const filteredResults = data.filter((item) => {
+            const {
+              RestaurantsDelivery = "False",
+              RestaurantsTakeOut = "False",
+              RestaurantsReservations ="False",
+              RestaurantsPriceRange2 = 6,
+            } = item.attributes;
+            const {
+              stars = 1,
+              review_count = 0,
+            } =item;
+            if (
+              isDeliveryNeeded === converttobool(RestaurantsDelivery) &&
+              isTakeOutNeeded === converttobool(RestaurantsTakeOut) &&
+              isReservationAllowed === converttobool(RestaurantsReservations)
+            ) {
               return true;
             } else {
               return false;
@@ -262,8 +262,8 @@
           });
           tileRootDOM.innerHTML = "";
           renderTiles(filteredResults);
-        })
-        
+        });
+
         //  openNavresults();
         // document.getElementById("filteredresult").appendChild(createElementFromHTML(tile));
       }
