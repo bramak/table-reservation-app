@@ -111,7 +111,7 @@
               <input type="checkbox" name="takeout" id="takeout" />
               <span class="checkmark"></span>
             </label>
-            <label for="reviewsmin" class ="labelsForDropdown">Reviews</label>
+            <label for="reviewsmin" class="labelsForDropdown">Reviews</label>
             <select name="reviewsmin" id="reviewsmin">
               <option value="0">0+</option>
               <option value="10">10+</option>
@@ -141,7 +141,7 @@
 
     <script src="../../utils/detailsscripts.js"></script>
     <script type="text/javascript">
-      var check=0;
+      var check = 0;
       // List Element
       const ul = document.querySelector("#business");
 
@@ -165,7 +165,7 @@
         // iterate over items
         const listitems = data.forEach((item) => {
           // create the elements
-          const tile = `  
+          const tile = `
               <div class="tile">
                     <div class="mainbox">
                     <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
@@ -223,14 +223,29 @@
 
       function filterresults() {
         check = 0;
-        empty.innerHTML="";
-        const isDeliveryNeeded = deliveryFilterDOM.checked;
-        const isTakeOutNeeded = takeOutFilterDOM.checked;
-        //   const isALcoholServed = alcoholFilterDOM.checked;
-        const isReservationAllowed = reservationFilterDOM.checked;
-        const maxPriceRange = pricevalFilterDOM.value;
-        const minStars = ratingFilterDOM.value;
-        const minReviewsrequired = reviewsminFilterDOM.value;
+        empty.innerHTML = "";
+        const allFilterOptions = {
+          RestaurantsDelivery: deliveryFilterDOM.checked,
+          RestaurantsTakeOut: takeOutFilterDOM.checked,
+          RestaurantsReservations: reservationFilterDOM.checked,
+          maxPriceRange: parseInt(pricevalFilterDOM.value),
+          stars: parseInt(ratingFilterDOM.value),
+          review_count: parseInt(reviewsminFilterDOM.value),
+        };
+        const chosenFilterOptions = Object.keys(allFilterOptions).reduce(
+          (acc, key) => {
+            if (typeof allFilterOptions[key] === "boolean") {
+              if (allFilterOptions[key] === true) {
+                return { ...acc, [key]: true };
+              } else {
+                return acc;
+              }
+            } else {
+              return { ...acc, [key]: allFilterOptions[key] };
+            }
+          },
+          {}
+        );
         getData().then((data) => {
           const filteredResults = data.filter((item) => {
             const {
@@ -240,24 +255,34 @@
               RestaurantsPriceRange2 = 6,
             } = item.attributes;
             const { stars = 1, review_count = 0 } = item;
-            if (
-              isDeliveryNeeded === converttobool(RestaurantsDelivery) &&
-              isTakeOutNeeded === converttobool(RestaurantsTakeOut) &&
-              isReservationAllowed === converttobool(RestaurantsReservations) &&
-              minStars <= stars &&
-              minReviewsrequired <= review_count &&
-              maxPriceRange >= RestaurantsPriceRange2
-            ) {
-              check =1;
-              return true;
-            } else {
-              return false;
-            }
+            const filterParams = {
+              RestaurantsDelivery: converttobool(RestaurantsDelivery),
+              RestaurantsTakeOut: converttobool(RestaurantsTakeOut),
+              RestaurantsReservations: converttobool(RestaurantsReservations),
+              RestaurantsPriceRange2,
+              stars,
+              review_count,
+            };
+            let result = true;
+            Object.keys(chosenFilterOptions).forEach((key) => {
+              if (typeof chosenFilterOptions[key] === "boolean") {
+                if (filterParams[key] === false) {
+                  result = false;
+                }
+              } else if (typeof chosenFilterOptions[key] === "number") {
+                if (filterParams[key] <= chosenFilterOptions[key]) {
+                  result = false;
+                }
+              }
+            });
+            return result;
           });
           tileRootDOM.innerHTML = "";
           renderTiles(filteredResults);
-          if (check === 0){
-            document.getElementById("empty").appendChild(createElementFromHTML(emptytiles));
+          if (check === 0) {
+            document
+              .getElementById("empty")
+              .appendChild(createElementFromHTML(emptytiles));
           }
           document.getElementById("btn").click();
         });
