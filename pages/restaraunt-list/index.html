@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Restaraunts</title>
@@ -14,12 +15,7 @@
           class="price_tag"
         />
       </button>
-      <div id="btn" class="filterbutton2">
-        <div id="top"></div>
-        <div id="middle"></div>
-        <div id="bottom"></div>
-      </div>
-      <div id="btn" class="filterbutton">
+      <div id="btn" class="filterButton">
         <div id="top"></div>
         <div id="middle"></div>
         <div id="bottom"></div>
@@ -38,7 +34,7 @@
     </div>
     <div id="About-Us" class="tabcontent">About-Us</div>
 
-    <div id="testmenu" class="sidetab">
+    <div id="sideTab" class="sidetab">
       <a href="javascript:void(0)" class="closebtn" onclick="tablinksclose()"
         >×</a
       >
@@ -46,14 +42,14 @@
         <li>
           <button
             class="sidetablinks"
-            onclick="openpage(event, 'Restaraunts')"
+            onclick="openpage2(event, 'Restaraunts')"
             id="defaultOpen"
           >
             Restaraunts
           </button>
         </li>
         <li>
-          <button class="sidetablinks" onclick="openpage(event, 'About-Us')">
+          <button class="sidetablinks" onclick="openpage2(event, 'About-Us')">
             About US
           </button>
         </li>
@@ -141,7 +137,6 @@
 
     <script src="../../utils/detailsscripts.js"></script>
     <script type="text/javascript">
-      var check = 0;
       // List Element
       const ul = document.querySelector("#business");
 
@@ -168,7 +163,7 @@
           const tile = `
               <div class="tile">
                     <div class="mainbox">
-                    <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="loading image please wait" onerror=this.src="../../imageicondata/food.png" /></div>
+                    <div class="imgclass"><img class="image" src="${item.thumbnail}" alt="${item.name}"  onerror=this.src="../../imageicondata/food.png" /></div>
                     <div class="overlay"></div>
                     <div class="buttonoverlay">
                     <div class="restname">${item.name}</div>
@@ -209,12 +204,12 @@
 
       //menu
       function tablinksdrop() {
-        document.getElementById("testmenu").style.width = "150px";
+        document.getElementById("sideTab").style.width = "150px";
         document.getElementById("main").style.marginLeft = "150px";
       }
 
       function tablinksclose() {
-        document.getElementById("testmenu").style.width = "0";
+        document.getElementById("sideTab").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
       }
 
@@ -222,7 +217,6 @@
       const tilefiler = `<div>filers</div>`;
 
       function filterresults() {
-        check = 0;
         empty.innerHTML = "";
         const allFilterOptions = {
           RestaurantsDelivery: deliveryFilterDOM.checked,
@@ -278,13 +272,15 @@
             return result;
           });
           tileRootDOM.innerHTML = "";
+          console.log(filteredResults);
           renderTiles(filteredResults);
-          if (check === 0) {
+          if (filteredResults.length == 0) {
             document
               .getElementById("empty")
               .appendChild(createElementFromHTML(emptytiles));
           }
           document.getElementById("btn").click();
+          document.getElementById("defaultOpen").click();
         });
 
         //  openNavresults();

@@ -1,6 +1,7 @@
-
-
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
 #main-content {
   position: absolute;
@@ -23,18 +24,18 @@ html, body { height: 100%; }
 }
 
 .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-  
-  .flex-container .tile {
-    line-height:0;
-    margin: 20px;
-    flex: none;
-  }
 
+.flex-container .tile {
+ /* z-index: -1; */
+  line-height: 0;
+  margin: 20px;
+  flex: none;
+}
 
 .mainbox {
   border-radius: 25px 25px 0px 0px;
@@ -42,175 +43,172 @@ html, body { height: 100%; }
   height: 250px;
   position: relative;
   background-color: rgba(163, 149, 149, 0.795);
-  }
+}
 
-  .overlay {
-      background-color: black;
-      opacity: 0.5;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      width: inherit;
-      height: 0;
-      transition: .5s ease;
-  }
+.overlay {
+  background-color: black;
+  opacity: 0.5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: inherit;
+  height: 0;
+  transition: 0.5s ease;
+}
 
-  .mainbox:hover .overlay {
-      height: 25%;
-  }
+.mainbox:hover .overlay {
+  height: 25%;
+}
 
-  .buttonoverlay {
-      color: white;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      text-align: left;
-      font-size: 16px;
-      margin: 4px 2px;
-      
-      width: inherit;
-      height: 0;
-      transition: .5s ease;
-  }
+.buttonoverlay {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  text-align: left;
+  font-size: 16px;
+  margin: 4px 2px;
 
-  .mainbox:hover .buttonoverlay {
-      height: 25%;
-  }
+  width: inherit;
+  height: 0;
+  transition: 0.5s ease;
+}
 
-  .restname {
-      color: white;
-      font-size: 50 px;
-      position: absolute;
-      top: 40%;
-      left: 0;
-      display: inline-block;
-      text-align: left;
-      padding: 5px 25px;
-  }
+.mainbox:hover .buttonoverlay {
+  height: 25%;
+}
 
-  .ratingbox {
-      border-radius: 5px;
-      background-color: #228B22;
-      color: white;
-      opacity: 1.0;
-      padding: 10px 10px;
-      text-align: center;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      position: absolute;
-      top: 20%;
-      left: 80%;
-  }
+.restname {
+  color: white;
+  font-size: 50 px;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  display: inline-block;
+  text-align: left;
+  padding: 5px 25px;
+}
 
-  .button {
-      border: none;
-      border-radius:5px;
-      color: white;
-      padding: 15px 16px;
-      text-align: center;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      background-color: #F6AB55;
-  }
+.ratingbox {
+  border-radius: 5px;
+  background-color: #228b22;
+  color: white;
+  opacity: 1;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  position: absolute;
+  top: 20%;
+  left: 80%;
+}
 
-  .image {
-      border-radius: 25px 25px 0px 0px;
-      width: 400px;
-      height: 250px;
-      background-image: rgba(163, 149, 149, 0.795);
-      
-      
-  }
+.button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 16px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  background-color: #f6ab55;
+}
 
-  .bottommain {
-      border-radius: 0px 0px 25px 25px;
-      width:380px;
-      position: relative;
-      background-color: rgba(209, 192, 192, 0.795);
-      padding: 10px 10px;
-  }
 
-  /* Style the tab */
+
+.image {
+  border-radius: 25px 25px 0px 0px;
+  width: 400px;
+  height: 250px;
+  background-image: rgba(163, 149, 149, 0.795);
+}
+
+.bottommain {
+  border-radius: 0px 0px 25px 25px;
+  width: 380px;
+  position: relative;
+  background-color: rgba(209, 192, 192, 0.795);
+  padding: 10px 10px;
+}
+
+/* Style the tab */
 .tab {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    width: 100%;
-  }
-  
-  /* Style the buttons inside the tab */
-  .tab .tablinks {
-    background-color: inherit;
-    float: left;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  width: 100%;
+}
 
-  .tab .navigation-filter {
-    background-color: #9c9494;
-    float: left;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
+/* Style the buttons inside the tab */
+.tab .tablinks {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+  float: left;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
 
-  
-  /* Change background color of buttons on hover */
-  .tab .tablinks:hover {
-    background-color: #ddd;
-  }
+.tab .navigation-filter {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: #9c9494;
+  float: left;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
 
-  .tab .navigation-filter:hover {
-    background-color: rgb(138, 131, 131);
-  }
-  
+/* Change background color of buttons on hover */
+.tab .tablinks:hover {
+  background-color: #ddd;
+}
 
-  /* Create an active/current tablink class */
-  .tab .tablinks.active {
-    background-color: #ccc;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border-top: none;
-  }
+.tab .navigation-filter:hover {
+  background-color: rgb(138, 131, 131);
+}
 
+/* Create an active/current tablink class */
+.tab .tablinks.active {
+  background-color: #ccc;
+}
 
-  /* extra for the filter button */
-    /* Style the buttons inside the tab */
-    .tab .filterbutton {
-      float: left;
-      border: 0;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-    }
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
 
-    .tab .filterbutton2 {
-      float: left;
-      border: 0;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-    }
+/* extra for the filter button */
+/* Style the buttons inside the tab */
+.tab .filterButton {
+  float: right;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
 
 
 /*sidetab*/
@@ -221,7 +219,7 @@ html, body { height: 100%; }
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   transition: 0.5s;
@@ -230,17 +228,17 @@ html, body { height: 100%; }
 
 .no-bullets .sidetablinks {
   background-color: inherit;
-    float: left;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+  float: left;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
 }
 
-.no-bullets .sidefilterbutton:hover{
-  background-color:  #9c9494;
+.no-bullets .sidefilterButton:hover {
+  background-color: #9c9494;
 }
 
 .sidetab .closebtn {
@@ -253,88 +251,85 @@ html, body { height: 100%; }
   margin-left: 50px;
 }
 
-
 /*sidebar*/
 .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
 .opaquefield {
   height: 100%;
   width: 100%;
-  position:fixed;
+  position: fixed;
   z-index: 1;
   background-color: white;
   opacity: 0.8;
-}  
-  
-  .sidebar .info {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidebar .info:hover {
-    color: #f1f1f1;
-  }
+}
 
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidebar a:hover {
-    color: #f1f1f1;
-  }
-  
-  
-  .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
+.sidebar .info {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
 
-  .price_tag{
-    background-color: transparent;
-  }
+.sidebar .info:hover {
+  color: #f1f1f1;
+}
 
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
 
-  /*checkboxes*/
+.sidebar a:hover {
+  color: #f1f1f1;
+}
 
- .labelsForDropdown{
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.price_tag {
+  background-color: transparent;
+}
+
+/*checkboxes*/
+
+.labelsForDropdown {
   font-size: 22px;
- }
+}
 
 .container {
   text-align: left;
@@ -350,7 +345,7 @@ html, body { height: 100%; }
   user-select: none;
 }
 
-.container input{
+.container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -370,7 +365,6 @@ input[type="checkbox"][readonly] {
   height: 25px;
   width: 25px;
   background-color: rgb(59, 58, 58);
-  
 }
 
 .checkmark:after {
@@ -387,7 +381,6 @@ input[type="checkbox"][readonly] {
   display: block;
 }
 
-
 .container .checkmark:after {
   left: 9px;
   top: 5px;
@@ -400,129 +393,145 @@ input[type="checkbox"][readonly] {
   transform: rotate(45deg);
 }
 
-.tab .hamburgermenu{
-  background-color: inherit;;
-    float: left;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+.tab .hamburgermenu {
+  background-color: inherit;
+  float: left;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
 }
-
 
 .tab .hamburgermenu:hover {
   background-color: rgb(138, 131, 131);
 }
 
-  /* resposivedesign */
-  @media screen and (min-width:801px){
-.hamburgermenu { display: none;}
-
+/* resposivedesign */
+@media screen and (min-width: 801px) {
+  .hamburgermenu {
+    display: none;
+  }
 }
-  
-  /*changes width based on screen size*/
-  @media screen and (max-width:800px) {
-    .filterbutton {
-      width:100%; 
-      display: none;/* The width is 100%, when the viewport is 800px or smaller */
-    }
-    .navigation-filter { display: none}
-    .hamburgermenu {display: inline;}
-    .tablinks {display: none;}
-  }
 
-  /* side bar with transform */
+/*changes width based on screen size*/
+@media screen and (max-width: 800px) {
+  .navigation-filter {
+    display: none;
+  }
+  .hamburgermenu {
+    display: inline;
+  }
+  .tablinks {
+    display: none;
+  }
+}
 
-  #box {
-    position: fixed;
-    z-index: 4;
-    overflow: auto;
-    top: 0px;
-    left: -275px;
-    width: 275px;
-    opacity: 0;
-    padding: 20px 0px;
-    height: 100%;
-    background-color: #111;
-    color: #818181;
-    -webkit-transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-    transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-  }
-  
-  #box.active {
-    left: 0px;
-    opacity: 1;
-  }
-  
-  #items {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
-  
-  #items .item {
-    position: relative;
-    cursor: pointer;
-    font-size: 2em;
-    padding: 15px 30px;
-    -webkit-transition: all 250ms;
-    transition: all 250ms;
-  }
-  /*
+/* side bar with transform */
+
+#box {
+  position: fixed;
+  z-index: 4;
+  overflow: auto;
+  top: 0px;
+  left: -275px;
+  width: 275px;
+  opacity: 0;
+  padding: 20px 0px;
+  height: 100%;
+  background-color: #111;
+  color: #818181;
+  -webkit-transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+}
+
+#box.active {
+  left: 0px;
+  opacity: 1;
+}
+
+#items {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#items .item {
+  position: relative;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 15px 30px;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+/*
   #items .item:hover {
     padding: 15px 45px;
     background-color: rgba(52, 56, 56, 0.2);
   }
 */
 
-  #btn {
-    position: relative;
-    z-index: 5;
-   /* top: 15px; */
-    left: 15px;
-    cursor: pointer;
-    -webkit-transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-    transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
-  }
-  
-  #btn div {
-    width: 35px;
-    height: 2px;
-    margin-bottom: 8px;
-    background-color: #040505;
-    -webkit-transition: -webkit-transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, box-shadow 250ms, background-color 500ms;
-    transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms, box-shadow 250ms, background-color 500ms;
-  }
-  
-  #btn:hover > div { box-shadow: 0 0 1px #3d3f3f; }
-  
-  #btn.active { left: 200px; }
-  
-  #btn.active div { background-color: #111; }
-  
-  #btn.active:hover > div { box-shadow: 0 0 1px #818181; }
+#btn {
+  position: relative;
+  z-index: 5;
+  /* top: 15px; */
+  left: 15px;
+  cursor: pointer;
+  -webkit-transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  transition: left 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+}
 
-  #btn.active #top {
-    -webkit-transform: translateY(10px) rotate(-135deg);
-    -ms-transform: translateY(10px) rotate(-135deg);
-    transform: translateY(10px) rotate(-135deg);
-    background-color: #818181;
-  }
-  
-  #btn.active #middle {
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
-  }
-  
-  #btn.active #bottom {
-    -webkit-transform: translateY(-10px) rotate(-45deg);
-    -ms-transform: translateY(-10px) rotate(-45deg);
-    transform: translateY(-10px) rotate(-45deg);
-    background-color: #818181;
-  }
+#btn div {
+  width: 35px;
+  height: 2px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  background-color: #040505;
+  -webkit-transition: -webkit-transform 500ms
+      cubic-bezier(0.6, 0.05, 0.28, 0.91),
+    opacity 500ms, box-shadow 250ms, background-color 500ms;
+  transition: transform 500ms cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 500ms,
+    box-shadow 250ms, background-color 500ms;
+}
 
+#btn:hover > div {
+  box-shadow: 0 0 1px #3d3f3f;
+}
+/*
+#btn.active {
+  z-index: 7;
+  float: left;
+  left: 240px;
+}
+*/
+
+#btn.active div {
+  background-color: rgb(226, 212, 212);
+}
+
+#btn.active:hover > div {
+  box-shadow: 0 0 1px #818181;
+}
+
+#btn.active #top {
+  -webkit-transform: translateY(10px) rotate(-135deg);
+  -ms-transform: translateY(10px) rotate(-135deg);
+  transform: translateY(10px) rotate(-135deg);
+  background-color: #818181;
+}
+
+#btn.active #middle {
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+
+#btn.active #bottom {
+  -webkit-transform: translateY(-10px) rotate(-45deg);
+  -ms-transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
+  background-color: #818181;
+}

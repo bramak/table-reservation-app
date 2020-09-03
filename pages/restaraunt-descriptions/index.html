@@ -6,9 +6,45 @@
   <script src="../../utils/detailsscripts.js"></script>
   <body>
     <div id="headerdetails"></div>
+    <div class="tab">
+      <button class="tablinks" onclick="openpage(event, 'Details')" id ="defaultOpen">
+        Details
+      </button>
+      <button class="tablinks" onclick="openpage(event, 'Photos')">
+        Photos
+      </button>
+      <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
+      <button class="tablinks" onclick="openpage(event, 'Reviews')">
+        <div id="reviewcount">Reviews </div>
+      </button>
+    </div>
 
+    <div id="Details" class="tabcontent">
+      <div id="averagecost_mealtimes"></div>
+      <hr>
+      <h3><div id="otherattributes"></div>
+      <div id="checkboxvalues"></div></h3>
+      <hr>
+      
+    </div>
+
+    <div id="Photos" class="tabcontent">
+      <h3>Photos</h3>
+
+      <div id="photos" class="cards"></div>
+
+
+    </div>
+
+    <div id="Menu" class="tabcontent">
+      <h3>Menu</h3>
+    </div>
+
+    <div id="Reviews" class="tabcontent">
+      <h3>Reviews</h3>
+    </div>
     <script>
-
+      document.getElementById("defaultOpen").click();
       //const div = document.querySelector("#headerdetails");
       const url = "http://localhost:3001/business?business_id=" + urlmanipulation();
 
@@ -18,7 +54,7 @@
         .then((data) => {
           const listitems = data.forEach((item) => {
             // create the elements
-
+            const reviewcountjs =`(${item.review_count})`
             //header elements: image, tabs and tab contents
             const header = `<div>
               <title>${item.name}</title>
@@ -35,44 +71,6 @@
               ${item.state}<br />
               ${item.postal_code}
             </h2>
-
-            <div class="tab">
-            <button class="tablinks" onclick="openpage(event, 'Details')" id ="defaultOpen">
-              Details
-            </button>
-            <button class="tablinks" onclick="openpage(event, 'Photos')">
-              Photos
-            </button>
-            <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
-            <button class="tablinks" onclick="openpage(event, 'Reviews')">
-              Reviews ( ${item.review_count} )
-            </button>
-          </div>
-
-          <div id="Details" class="tabcontent">
-            <div id="averagecost_mealtimes"></div>
-            <hr>
-            <h3><div id="otherattributes"></div>
-            <div id="checkboxvalues"></div></h3>
-            <hr>
-            
-          </div>
-
-          <div id="Photos" class="tabcontent">
-            <h3>Photos</h3>
-
-            <div id="photos" class="cards"></div>
-
-
-          </div>
-
-          <div id="Menu" class="tabcontent">
-            <h3>Menu</h3>
-          </div>
-
-          <div id="Reviews" class="tabcontent">
-            <h3>Reviews</h3>
-          </div>
             </div>`;
 
             //averagecost and mealtimes div, placed into details tab
@@ -152,6 +150,10 @@
             document
               .getElementById("headerdetails")
               .appendChild(createElementFromHTML(header));
+
+              document
+              .getElementById("reviewcount")
+              .appendChild(createElementFromHTML(reviewcountjs));  
 
             document
               .getElementById("checkboxvalues")
