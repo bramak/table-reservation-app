@@ -126,6 +126,7 @@ body {
   border-radius: 25px 25px 0px 0px;
   width: 400px;
   height: 250px;
+  object-fit: cover;
   background-image: rgba(163, 149, 149, 0.795);
 }
 
