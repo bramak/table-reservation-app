@@ -499,7 +499,8 @@ input[type="checkbox"][readonly] {
 }
 
 #btn.active {
-  float: right;
+  left: 250px;
+  background-color: #f1f1f1;
 }
 
 #btn.active div {
