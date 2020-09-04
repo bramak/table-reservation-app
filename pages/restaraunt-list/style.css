@@ -202,7 +202,7 @@ body {
 /* extra for the filter button */
 /* Style the buttons inside the tab */
 .tab .filterButton {
-  float: right;
+  float: left;
   border: 0;
   outline: none;
   cursor: pointer;
@@ -498,9 +498,13 @@ input[type="checkbox"][readonly] {
   box-shadow: 0 0 1px #3d3f3f;
 }
 
+#btn.active {
+  float: right;
+}
 
 #btn.active div {
   background-color: rgb(226, 212, 212);
+  
 }
 
 #btn.active:hover > div {
