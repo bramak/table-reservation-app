@@ -3,11 +3,15 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <script src="../../utils/detailsscripts.js"></script>
   <body>
     <div id="headerdetails"></div>
+    <!--navigation tab-->
     <div class="tab">
-      <button class="tablinks" onclick="openpage(event, 'Details')" id ="defaultOpen">
+      <button
+        class="tablinks"
+        onclick="openpage(event, 'Details')"
+        id="defaultOpen"
+      >
         Details
       </button>
       <button class="tablinks" onclick="openpage(event, 'Photos')">
@@ -15,25 +19,23 @@
       </button>
       <button class="tablinks" onclick="openpage(event, 'Menu')">Menu</button>
       <button class="tablinks" onclick="openpage(event, 'Reviews')">
-        <div id="reviewcount">Reviews </div>
+        <div id="reviewcount">Reviews</div>
       </button>
     </div>
-
+<!--tabcontent-->
     <div id="Details" class="tabcontent">
       <div id="averagecost_mealtimes"></div>
-      <hr>
-      <h3><div id="otherattributes"></div>
-      <div id="checkboxvalues"></div></h3>
-      <hr>
-      
+      <hr />
+      <h3>
+        <div id="otherattributes"></div>
+        <div id="checkboxvalues"></div>
+      </h3>
+      <hr />
     </div>
 
     <div id="Photos" class="tabcontent">
       <h3>Photos</h3>
-
       <div id="photos" class="cards"></div>
-
-
     </div>
 
     <div id="Menu" class="tabcontent">
@@ -43,10 +45,15 @@
     <div id="Reviews" class="tabcontent">
       <h3>Reviews</h3>
     </div>
+
+<!--external scripts-->
+  <script src="../../utils/detailsscripts.js"></script>
     <script>
+      //default tab 
       document.getElementById("defaultOpen").click();
-      //const div = document.querySelector("#headerdetails");
-      const url = "http://localhost:3001/business?business_id=" + urlmanipulation();
+      
+      const url =
+        "http://localhost:3001/business?business_id=" + urlmanipulation();
 
       //fetch buisness api script
       fetch(url)
@@ -54,7 +61,7 @@
         .then((data) => {
           const listitems = data.forEach((item) => {
             // create the elements
-            const reviewcountjs =`(${item.review_count})`
+            const reviewcountjs = `(${item.review_count})`;
             //header elements: image, tabs and tab contents
             const header = `<div>
               <title>${item.name}</title>
@@ -84,7 +91,6 @@
             </div>
           `;
 
-          
             //attributes not into checkbox, placed into details tab
             const otherattributesjs = `<div>
 				<button class="categories2" disabled>${item.attributes.Alcohol}</button>
@@ -151,9 +157,9 @@
               .getElementById("headerdetails")
               .appendChild(createElementFromHTML(header));
 
-              document
+            document
               .getElementById("reviewcount")
-              .appendChild(createElementFromHTML(reviewcountjs));  
+              .appendChild(createElementFromHTML(reviewcountjs));
 
             document
               .getElementById("checkboxvalues")
@@ -222,57 +228,56 @@
                 .appendChild(createElementFromHTML(pricemarkjs));
             }
 
-             //timings implematation and display 
-            const timingsjs=`<div class="timingOfOpen">Open:<div id="mondaytime"></div><div id="tuesdaytime"></div><div id="wednesdaytime"></div><div id="thursdaytime"></div>
+            //timings implematation and display
+            const timingsjs = `<div class="timingOfOpen">Open:<div id="mondaytime"></div><div id="tuesdaytime"></div><div id="wednesdaytime"></div><div id="thursdaytime"></div>
                               <div id="fridaytime"></div><div id="saturdaytime"></div><div id="sundaytime"></div></div>`;
 
             document
               .getElementById("timings")
               .appendChild(createElementFromHTML(timingsjs));
 
-            
-            const mondayjs=`<div >Monday:${item.hours.Monday}</div>`;
-            const tuesdayjs=`<div>Tuesday:${item.hours.Tuesday}</div>`;
-            const wednesdayjs=`<div >Wednesday:${item.hours.Wednesday}</div>`;
-            const thursdayjs=`<div >Thursday:${item.hours.Thursday}</div>`;
-            const fridayjs=`<div >Friday:${item.hours.Friday}</div>`;
-            const saturdayjs=`<div>Saturday:${item.hours.Saturday}</div>`;
-            const sundayjs=`<div>Sunday:${item.hours.Sunday}</div>`;
+            const mondayjs = `<div >Monday:${item.hours.Monday}</div>`;
+            const tuesdayjs = `<div>Tuesday:${item.hours.Tuesday}</div>`;
+            const wednesdayjs = `<div >Wednesday:${item.hours.Wednesday}</div>`;
+            const thursdayjs = `<div >Thursday:${item.hours.Thursday}</div>`;
+            const fridayjs = `<div >Friday:${item.hours.Friday}</div>`;
+            const saturdayjs = `<div>Saturday:${item.hours.Saturday}</div>`;
+            const sundayjs = `<div>Sunday:${item.hours.Sunday}</div>`;
 
-            if(item.hours.Monday!= undefined)  
-            document
-              .getElementById("mondaytime")
-              .appendChild(createElementFromHTML(mondayjs));
+            if (item.hours.Monday != undefined)
+              document
+                .getElementById("mondaytime")
+                .appendChild(createElementFromHTML(mondayjs));
 
-            if(item.hours.Tuesday!= undefined)  
-            document
-              .getElementById("tuesdaytime")
-              .appendChild(createElementFromHTML(tuesdayjs));
+            if (item.hours.Tuesday != undefined)
+              document
+                .getElementById("tuesdaytime")
+                .appendChild(createElementFromHTML(tuesdayjs));
 
-            if(item.hours.Wednesday!= undefined)  
-            document
-              .getElementById("wednesdaytime")
-              .appendChild(createElementFromHTML(wednesdayjs));     
+            if (item.hours.Wednesday != undefined)
+              document
+                .getElementById("wednesdaytime")
+                .appendChild(createElementFromHTML(wednesdayjs));
 
-            if(item.hours.Thursday!= undefined)  
-            document
-              .getElementById("thursdaytime")
-              .appendChild(createElementFromHTML(thursdayjs));
+            if (item.hours.Thursday != undefined)
+              document
+                .getElementById("thursdaytime")
+                .appendChild(createElementFromHTML(thursdayjs));
 
-            if(item.hours.Friday!= undefined)  
-            document
-              .getElementById("fridaytime")
-              .appendChild(createElementFromHTML(fridayjs));
+            if (item.hours.Friday != undefined)
+              document
+                .getElementById("fridaytime")
+                .appendChild(createElementFromHTML(fridayjs));
 
-            if(item.hours.Saturday!= undefined)  
-            document
-              .getElementById("saturdaytime")
-              .appendChild(createElementFromHTML(saturdayjs));     
+            if (item.hours.Saturday != undefined)
+              document
+                .getElementById("saturdaytime")
+                .appendChild(createElementFromHTML(saturdayjs));
 
-            if(item.hours.Sunday!= undefined)  
-            document
-              .getElementById("sundaytime")
-              .appendChild(createElementFromHTML(sundayjs));
+            if (item.hours.Sunday != undefined)
+              document
+                .getElementById("sundaytime")
+                .appendChild(createElementFromHTML(sundayjs));
 
             //other attributes
             document
@@ -281,7 +286,7 @@
 
             console.log(item.attributes);
 
-            //photos api fetch placed in photos tab
+            //photos api fetch placed in photos tab, nested api call
             const url1 = "http://localhost:3001/photos";
             fetch(url1)
               .then((res) => res.json())

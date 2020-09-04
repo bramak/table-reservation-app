@@ -56,7 +56,7 @@
       </ul>
     </div>
 
-    <!--filterpage, sidebar to be integrated-->
+    <!--filterpage-->
     <div id="box">
       <div id="items">
         <div class="item">
@@ -129,13 +129,10 @@
       </div>
     </div>
 
-    <!--filterpage sidebar- to be phased out-->
-    <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <div class="info">Choose Your Filters</div>
-    </div>
-
+<!--external script-->
     <script src="../../utils/detailsscripts.js"></script>
+
+<!--other scripts-->    
     <script type="text/javascript">
       // List Element
       const ul = document.querySelector("#business");
@@ -143,9 +140,10 @@
       // API URL
       const url = "http://localhost:3001/business";
 
+
+      //DOM's to get elements from filter form
       const deliveryFilterDOM = document.getElementById("delivery");
       const takeOutFilterDOM = document.getElementById("takeout");
-      //  const alcoholFilterDOM = document.getElementById("alcohol");
       const reservationFilterDOM = document.getElementById(
         "restaurantreservations"
       );
@@ -155,7 +153,10 @@
 
       const tileRootDOM = document.getElementById("headerdetails");
 
+      //text to display when there are no results after filter
       const emptytiles = `<div><h2>There are no results that match this search.</h2></div>`;
+
+      //rendering tiles
       const renderTiles = (data) => {
         // iterate over items
         const listitems = data.forEach((item) => {
@@ -184,8 +185,6 @@
         });
       };
 
-      var valuere = 3;
-      var price = 0;
       // make the API call
 
       function getData() {
@@ -200,6 +199,7 @@
         renderTiles(data);
       });
 
+      // default open restaraunt list when loaded or click to open the restaraunt list tab
       document.getElementById("defaultOpen").click();
 
       //menu
@@ -213,11 +213,13 @@
         document.getElementById("main").style.marginLeft = "0";
       }
 
-      //filter display
-      const tilefiler = `<div>filers</div>`;
 
+      //filter results
       function filterresults() {
+        //if existing: to clear previous no results message 
         empty.innerHTML = "";
+
+        // parameters receving value from form
         const allFilterOptions = {
           RestaurantsDelivery: deliveryFilterDOM.checked,
           RestaurantsTakeOut: takeOutFilterDOM.checked,
@@ -226,6 +228,8 @@
           stars: parseInt(ratingFilterDOM.value),
           review_count: parseInt(reviewsminFilterDOM.value),
         };
+
+        // to consider only selected options in form
         const chosenFilterOptions = Object.keys(allFilterOptions).reduce(
           (acc, key) => {
             if (typeof allFilterOptions[key] === "boolean") {
@@ -240,6 +244,8 @@
           },
           {}
         );
+
+        //fetching results
         getData().then((data) => {
           const filteredResults = data.filter((item) => {
             const {
@@ -258,6 +264,7 @@
               review_count,
             };
             let result = true;
+            //counting params with true or number value
             Object.keys(chosenFilterOptions).forEach((key) => {
               if (typeof chosenFilterOptions[key] === "boolean") {
                 if (filterParams[key] === false) {
@@ -271,8 +278,13 @@
             });
             return result;
           });
+
+          //clearing previous display
           tileRootDOM.innerHTML = "";
+
           console.log(filteredResults);
+
+          //rendering final display
           renderTiles(filteredResults);
           if (filteredResults.length == 0) {
             document
@@ -282,12 +294,9 @@
           document.getElementById("btn").click();
           document.getElementById("defaultOpen").click();
         });
-
-        //  openNavresults();
-        // document.getElementById("filteredresult").appendChild(createElementFromHTML(tile));
       }
 
-      //other filtersidebar-inuse
+      //filtersidebar
 
       var sidebarBox = document.querySelector("#box");
       var sidebarBtn = document.querySelector("#btn");
