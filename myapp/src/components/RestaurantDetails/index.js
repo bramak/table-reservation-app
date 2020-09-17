@@ -1,8 +1,9 @@
 import React from "react";
-import Star from "./star.svg";
-import Tabs from "./Tabs";
-import RestarauntDetailPhotos from "./RestarauntDetailPhotos";
-import "./DetailsStyle.css";
+import Star from "../../images/star.svg";
+import Tabs from "../../common/Tabs";
+import RestaurantDetailPhotos from "./RestaurantDetailPhotos";
+import "./style.css";
+import { BUSINESS_DETAILS_API } from "../../apiUrls";
 
 class RestarauntDetails extends React.Component {
   constructor(props) {
@@ -37,15 +38,14 @@ class RestarauntDetails extends React.Component {
     } else return false;
   };
 
-  OpeningTimings = (string) =>{
-    if (string != undefined){
-      return string
-    }
-    else
-      return "closed";
-  }
+  OpeningTimings = (string) => {
+    if (string != undefined) {
+      return string;
+    } else return "closed";
+  };
 
-   GetBuisnessDetails=() =>{fetch("http://localhost:3001/business?business_id=gnKjwL_1w79qoiV3IC_xQQ")
+  getBusinessDetails = (id) => {
+    fetch(`${BUSINESS_DETAILS_API}?business_id=${this.props.id}`)
       .then((res) => res.json())
       .then(
         (data) => {
@@ -61,10 +61,11 @@ class RestarauntDetails extends React.Component {
             error,
           });
         }
-      );}
+      );
+  };
 
   componentDidMount() {
-    this.GetBuisnessDetails();
+    this.getBusinessDetails(this.props.id);
   }
 
   render() {
@@ -113,7 +114,9 @@ class RestarauntDetails extends React.Component {
                       <div className="Rtable">
                         <div>
                           <div className="Rtable-cell">Monday</div>
-                          <div className="Rtable-cell">{this.OpeningTimings(item.hours.Monday)}</div>
+                          <div className="Rtable-cell">
+                            {this.OpeningTimings(item.hours.Monday)}
+                          </div>
                         </div>
                         <div>
                           <div className="Rtable-cell">Tuesday</div>
@@ -135,7 +138,9 @@ class RestarauntDetails extends React.Component {
                         </div>
                         <div>
                           <div className="Rtable-cell">Friday</div>
-                          <div className="Rtable-cell">{this.OpeningTimings(item.hours.Friday)}</div>
+                          <div className="Rtable-cell">
+                            {this.OpeningTimings(item.hours.Friday)}
+                          </div>
                         </div>
                         <div>
                           <div className="Rtable-cell">Saturday</div>
@@ -145,7 +150,9 @@ class RestarauntDetails extends React.Component {
                         </div>
                         <div>
                           <div className="Rtable-cell">Sunday</div>
-                          <div className="Rtable-cell">{this.OpeningTimings(item.hours.Sunday)}</div>
+                          <div className="Rtable-cell">
+                            {this.OpeningTimings(item.hours.Sunday)}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -260,9 +267,9 @@ class RestarauntDetails extends React.Component {
                   </div>
 
                   <div label="Photos">
-                    <RestarauntDetailPhotos
+                    <RestaurantDetailPhotos
                       buisnessvalue={item.business_id}
-                    ></RestarauntDetailPhotos>
+                    ></RestaurantDetailPhotos>
                   </div>
                   <div label="Reviews">
                     {item.review_count}

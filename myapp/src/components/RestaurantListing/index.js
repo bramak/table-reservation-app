@@ -1,20 +1,19 @@
 import React from "react";
-import Tabs from "./Tabs";
-import Styles from "./ListStyle.module.css";
-import SideTab from "./SideTab";
-import RestarauntList from "./RestarauntListApicall";
+import Tabs from "../../common/Tabs";
+import Styles from "./style.module.css";
+import List from "./List";
 
 console.log(Styles);
 class Restarauntlisting extends React.Component {
   ViewFilters = () => {};
 
-  openNav =() => {
+  openNav = () => {
     document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  closeNav =() => {
+  };
+
+  closeNav = () => {
     document.getElementById("mySidenav").style.width = "0";
-  }
+  };
   render() {
     return (
       <div>
@@ -27,12 +26,10 @@ class Restarauntlisting extends React.Component {
           <a href="#">Clients</a>
           <a href="#">Contact</a>
         </div>
-        <span  onclick={this.openNav}>&#9776; open</span>
+        <span onclick={this.openNav}>&#9776; open</span>
         <Tabs>
-          <div label="Restaraunts" className= {Styles.flexContainer}>
-            <RestarauntList
-              changeRoute={this.props.changeRoute}
-            ></RestarauntList>
+          <div label="Restaraunts" className={Styles.flexContainer}>
+            <List onClickBusiness={this.props.onClickBusiness} />
             <button onClick={this.ViewFilters}>value</button>
           </div>
           <div label="About Us">info</div>

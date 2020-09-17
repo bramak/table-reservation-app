@@ -1,5 +1,5 @@
 import React from "react";
-import "./DetailsStyle.css";
+import "../style.css";
 
 class RestarauntDetailPhotos extends React.Component {
   constructor(props) {
