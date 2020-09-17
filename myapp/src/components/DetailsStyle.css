@@ -1,0 +1,241 @@
+.tab-list {
+  padding-left: 0;
+  background-color: #f1f1f1;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-list-side {
+  position: fixed;
+  z-index: 10;
+  float: right;
+  background-color: #f1f1f1;
+  width: 12%;
+  height: 100%;
+  overflow: auto;
+  top: 0px;
+  right: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  background-color: inherit;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab-list-item:hover {
+  background-color: rgb(138, 131, 131);
+}
+
+.tab-list-active {
+  background-color: #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 10%;
+}
+h2 {
+  text-align: left;
+  margin-left: 10%;
+  font-size: medium;
+}
+
+sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+/*box with rating*/
+.ratingbox {
+  border-radius: 5px;
+  background-color: #228b22;
+  color: white;
+  opacity: 1;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  top: 20%;
+  left: 80%;
+}
+
+/*mainimage*/
+.headingimage {
+  border-radius: 25px;
+  width: 80%;
+  height: 25vw;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detailsCategories {
+  background-color: rgb(241, 240, 224);
+  border-radius: 25px;
+  margin-top: 10px;
+  overflow: hidden;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 5px;
+}
+
+/*category boxes*/
+.categories {
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 15px 16px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  background-color: #f68355;
+}
+
+.categories2 {
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 15px 16px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  background-color: #b86645;
+}
+
+/*checkboxes*/ /*work on making unchageable*/
+
+.container {
+  text-align: left;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}
+
+.checkmark {
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: red;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #559bf6;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*detailspagephotos*/
+.photosalbum {
+  width: 20%;
+  height: 20%;
+  background-color: gray;
+}
+
+/*map*/
+#map {
+  width: 400px;
+  height: 400px;
+  background-color: grey;
+  left: 60%;
+  display: inline-block;
+}
+
+.timingOfOpen {
+  background-color: rgb(241, 240, 224);
+  overflow: hidden;
+  margin-left: 25%;
+  margin-right: 24.5%;
+  padding: 5px;
+}
+
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  padding: 0.8em 1.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 5px rgb(192, 178, 178);
+  margin: 0;
+  font-style: italic;
+}
+
+/*photostab*/
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.cards img {
+  margin: 10px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
+  max-width: 25vw;
+}
+
+li {
+  width: 100%;
+  height: 100%;
+}
