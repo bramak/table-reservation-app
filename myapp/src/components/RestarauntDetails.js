@@ -14,6 +14,8 @@ class RestarauntDetails extends React.Component {
     };
   }
 
+
+  
   componentDidMount() {
     fetch("http://localhost:3001/business?business_id=QXAEGFB4oINsVuTFxEYKFQ")
       .then((res) => res.json())
@@ -33,6 +35,8 @@ class RestarauntDetails extends React.Component {
           });
         }
       );
+
+      
   }
 
   render() {
@@ -55,11 +59,11 @@ class RestarauntDetails extends React.Component {
                   alt="loading image please wait"
                 />
                 <h1>
-                  {item.name}
-                  <div className="ratingbox">
+                  {item.name} <div className="ratingboxInDetails">
                     <img src={Star} width="16" height="16" /> {item.stars}
                   </div>
                 </h1>
+                
                 <h2>
                   {item.address}
                   <br />
@@ -77,36 +81,101 @@ class RestarauntDetails extends React.Component {
                     </div>
                     <hr width="80%"></hr>
                     <div className="timingOfOpen">
-                      <div class="Rtable">
+                      <div className="Rtable">
                         <div>
-                          <div class="Rtable-cell">Monday</div>
-                          <div class="Rtable-cell">{item.hours.Monday}</div>
+                          <div className="Rtable-cell">Monday</div>
+                          <div className="Rtable-cell">{item.hours.Monday}</div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Tuesday</div>
-                          <div class="Rtable-cell">{item.hours.Tuesday}</div>
+                          <div className="Rtable-cell">Tuesday</div>
+                          <div className="Rtable-cell">
+                            {item.hours.Tuesday}
+                          </div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Wednesday</div>
-                          <div class="Rtable-cell">{item.hours.Wednesday}</div>
+                          <div className="Rtable-cell">Wednesday</div>
+                          <div className="Rtable-cell">
+                            {item.hours.Wednesday}
+                          </div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Thursday</div>
-                          <div class="Rtable-cell">{item.hours.Thursday}</div>
+                          <div className="Rtable-cell">Thursday</div>
+                          <div className="Rtable-cell">
+                            {item.hours.Thursday}
+                          </div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Friday</div>
-                          <div class="Rtable-cell">{item.hours.Friday}</div>
+                          <div className="Rtable-cell">Friday</div>
+                          <div className="Rtable-cell">{item.hours.Friday}</div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Saturday</div>
-                          <div class="Rtable-cell">{item.hours.Saturday}</div>
+                          <div className="Rtable-cell">Saturday</div>
+                          <div className="Rtable-cell">
+                            {item.hours.Saturday}
+                          </div>
                         </div>
                         <div>
-                          <div class="Rtable-cell">Sunday</div>
-                          <div class="Rtable-cell">{item.hours.Sunday}</div>
+                          <div className="Rtable-cell">Sunday</div>
+                          <div className="Rtable-cell">{item.hours.Sunday}</div>
                         </div>
                       </div>
+                    </div>
+                    <div className="centeringdiv">
+                      <label className="container">
+                        Restaraunt Reservations
+                        <input type="checkbox" id="restarauntreservations" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Caters
+                        <input type="checkbox" id="caters" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Table Service
+                        <input type="checkbox" id="tableservice" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Take Out
+                        <input type="checkbox" id="takeout" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        OutdoorSeating
+                        <input type="checkbox" id="outdoorseating" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Bike Parking
+                        <input type="checkbox" id="bikeparking" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Has Tv
+                        <input type="checkbox" id="hastv" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Wifi
+                        <input type="checkbox" id="wifi" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Good For Kids
+                        <input type="checkbox" id="goodforkids" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Good For Groups
+                        <input type="checkbox" id="goodforgroups" />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">
+                        Delivery
+                        <input type="checkbox" id="delivery" />
+                        <span className="checkmark"></span>
+                      </label>
                     </div>
                   </div>
 
