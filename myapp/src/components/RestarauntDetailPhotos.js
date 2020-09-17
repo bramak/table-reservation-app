@@ -46,13 +46,13 @@ class RestarauntDetailPhotos extends React.Component {
       if (item.business_id == this.props.buisnessvalue)*/
       }
       return (
-        <ul className="flex-container">
+        <ul className="flexContainer">
           {items.map((item, index) => (
             <li key={index} id="restaraunts">
               {(isSame = item.business_id == this.props.buisnessvalue)}
               {isSame ? (
                 <div>
-                  <div id="photos" class="cards">
+                  <div id="photos" className="cards">
                     <img
                       src={`https://s3-media2.fl.yelpcdn.com/bphoto/${item.photo_id}/o.jpg`}
                       alt={item.caption}
