@@ -21,7 +21,7 @@ class App extends React.Component {
         {this.state.route === "listing" && (
           <Restarauntlisting changeRoute={this.changeRoute} />
         )}
-        {this.state.route === "details" && <RestarauntDetails />}
+        {this.state.route === "details" && <RestarauntDetails changeRoute={this.changeRoute}/>}
       </div>
     );
   }

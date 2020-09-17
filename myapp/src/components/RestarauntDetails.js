@@ -1,7 +1,7 @@
 import React from "react";
 import Star from "./star.svg";
 import Tabs from "./Tabs";
-//import RestarauntDetailPhotos from "./RestarauntDetailPhotos";
+import RestarauntDetailPhotos from "./RestarauntDetailPhotos";
 import "./DetailsStyle.css";
 
 class RestarauntDetails extends React.Component {
@@ -14,7 +14,30 @@ class RestarauntDetails extends React.Component {
     };
   }
 
-
+  goToListingPage = () => {
+    console.log(this.props);
+    this.props.changeRoute("listing");
+    }
+  
+  converttobool = (string) => {
+    if(string!=undefined){
+    switch (string.toLowerCase().trim()) {
+      case "true":
+      case "yes":
+      case "1":
+        return true;
+      case "false":
+      case "no":
+      case "0":
+      case null:
+        return false;
+      default: 
+        return Boolean(string);
+    }
+  }
+  else
+  return false;
+}
   
   componentDidMount() {
     fetch("http://localhost:3001/business?business_id=QXAEGFB4oINsVuTFxEYKFQ")
@@ -25,7 +48,6 @@ class RestarauntDetails extends React.Component {
             isLoaded: true,
             items: data,
           });
-          console.log(data);
         },
 
         (error) => {
@@ -41,7 +63,6 @@ class RestarauntDetails extends React.Component {
 
   render() {
     const { error, isLoaded, items } = this.state;
-    console.log(items);
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -62,6 +83,7 @@ class RestarauntDetails extends React.Component {
                   {item.name} <div className="ratingboxInDetails">
                     <img src={Star} width="16" height="16" /> {item.stars}
                   </div>
+                  <button className="backbutton" onClick="this.goToListingPage">Back</button>
                 </h1>
                 
                 <h2>
@@ -72,7 +94,9 @@ class RestarauntDetails extends React.Component {
                   {item.state}
                   <br />
                   {item.postal_code}
+                  
                 </h2>
+                
 
                 <Tabs>
                   <div label="Details">
@@ -123,64 +147,59 @@ class RestarauntDetails extends React.Component {
                     <div className="centeringdiv">
                       <label className="container">
                         Restaraunt Reservations
-                        <input type="checkbox" id="restarauntreservations" />
+                        <input type="checkbox" id="restarauntreservations" checked={this.converttobool(item.attributes.RestaurantsReservations)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Caters
-                        <input type="checkbox" id="caters" />
+                        <input type="checkbox" id="caters" checked={this.converttobool(item.attributes.Caters)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Table Service
-                        <input type="checkbox" id="tableservice" />
+                        <input type="checkbox" id="tableservice" checked={this.converttobool(item.attributes.RestaurantsTableService)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Take Out
-                        <input type="checkbox" id="takeout" />
+                        <input type="checkbox" id="takeout" checked={this.converttobool(item.attributes.RestaurantsTakeOut)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         OutdoorSeating
-                        <input type="checkbox" id="outdoorseating" />
+                        <input type="checkbox" id="outdoorseating" checked={this.converttobool(item.attributes.OutdoorSeating)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Bike Parking
-                        <input type="checkbox" id="bikeparking" />
+                        <input type="checkbox" id="bikeparking" checked={this.converttobool(item.attributes.BikeParking)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Has Tv
-                        <input type="checkbox" id="hastv" />
-                        <span className="checkmark"></span>
-                      </label>
-                      <label className="container">
-                        Wifi
-                        <input type="checkbox" id="wifi" />
+                        <input type="checkbox" id="hastv" checked={this.converttobool(item.attributes.HasTV)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Good For Kids
-                        <input type="checkbox" id="goodforkids" />
+                        <input type="checkbox" id="goodforkids" checked={this.converttobool(item.attributes.GoodForKids)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Good For Groups
-                        <input type="checkbox" id="goodforgroups" />
+                        <input type="checkbox" id="goodforgroups" checked={this.converttobool(item.attributes.RestaurantsGoodForGroups)}/>
                         <span className="checkmark"></span>
                       </label>
                       <label className="container">
                         Delivery
-                        <input type="checkbox" id="delivery" />
+                        <input type="checkbox" id="delivery" checked={this.converttobool(item.attributes.RestaurantsDelivery)}/>
                         <span className="checkmark"></span>
                       </label>
                     </div>
                   </div>
 
                   <div label="Photos">
-                    {/*<RestarauntDetailPhotos buisnessvalue={item.business_id}></RestarauntDetailPhotos> */}
+                    <RestarauntDetailPhotos buisnessvalue={item.business_id}></RestarauntDetailPhotos> 
                   </div>
                   <div label="Reviews">
                     {item.review_count}

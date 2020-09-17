@@ -20,7 +20,6 @@ class RestarauntDetailPhotos extends React.Component {
             isLoaded: true,
             items: data,
           });
-          console.log(data);
         },
 
         (error) => {
@@ -34,23 +33,41 @@ class RestarauntDetailPhotos extends React.Component {
 
   render() {
     const { error, isLoaded, items } = this.state;
-    console.log(items);
+    var isSame = true;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      items.map((item) => {
-        if (item.business_id === props.buisnessvalue)
-          return (
-            <div>
-              <img
-                src="https://s3-media2.fl.yelpcdn.com/bphoto/{item.photo_id}/o.jpg"
-                alt="{item.caption},{item.label}"
-              />
-            </div>
-          );
-      });
+      {
+        /*console.log(item.business_id);
+      
+
+      if (item.business_id == this.props.buisnessvalue)*/
+      }
+      return (
+        <ul className="flex-container">
+          {items.map((item, index) => (
+            <li key={index} id="restaraunts">
+              {(isSame = item.business_id == this.props.buisnessvalue)}
+              {isSame ? (
+                <div>
+                  <div id="photos" class="cards">
+                    <img
+                      src={`https://s3-media2.fl.yelpcdn.com/bphoto/${item.photo_id}/o.jpg`}
+                      alt={item.caption}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </li>
+          ))}
+        </ul>
+      );
+
+      //});
     }
   }
 }
