@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from "./Tabs";
 import "./ListStyle.css";
 import SideTab from "./SideTab";
-import RestarauntList from "./RestarauntList-apicall";
+import RestarauntList from "./RestarauntListApicall";
 
 
 class Restarauntlisting extends React.Component{
