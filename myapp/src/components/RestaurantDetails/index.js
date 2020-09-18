@@ -1,5 +1,6 @@
 import React from "react";
 import Star from "../../images/star.svg";
+import Food from "../../images/food.png";
 import Tabs from "../../common/Tabs";
 import RestaurantDetailPhotos from "./RestaurantDetailPhotos";
 import "./style.css";
@@ -70,6 +71,7 @@ class RestarauntDetails extends React.Component {
 
   render() {
     var timeexist = true;
+    var IsThumbnail = true;
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -82,11 +84,17 @@ class RestarauntDetails extends React.Component {
             <li key={index} id="restaraunts">
               <div>
                 <title>{item.name}</title>
+                {IsThumbnail= item.thumbnail!=undefined}
+                {IsThumbnail ? (
                 <img
                   className="headingimage"
                   src={item.thumbnail}
                   alt="loading image please wait"
-                />
+                />):(<img
+                  className="headingimage"
+                  src={Food}
+                  alt="loading image please wait"
+                />)}
                 <h1>
                   {item.name}{" "}
                   <div className="ratingboxInDetails">

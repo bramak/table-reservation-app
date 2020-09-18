@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "../style.module.css";
 import Star from "../../../images/star.svg";
+import Food from "../../../images/food.png";
 import { BUSINESS_DETAILS_API } from "../../../apiUrls";
 
 console.log(Star);
@@ -36,15 +37,12 @@ class List extends React.Component {
       );
   }
 
-  addDefaultSrc(ev){
-    ev.target.src = "./food.png";
-  }
-
   onClickBusiness = (id) => {
     this.props.onClickBusiness(id)
   };
 
   render() {
+    var IsThumbnail = true;
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -58,12 +56,19 @@ class List extends React.Component {
               <div className="tile">
                 <div className={Styles.mainbox}>
                   <div className={Styles.imgclassName}>
+                    {IsThumbnail= item.thumbnail!=undefined}
+                    {IsThumbnail?(
                     <img
                       className={Styles.image}
                       src={item.thumbnail}
-                      onError={this.addDefaultSrc}
+                      alt={item.name}
+                    />):(<div>
+                      <img
+                      className={Styles.image}
+                      src={Food}
                       alt={item.name}
                     />
+                    </div>)}
                   </div>
                   <div className={Styles.overlay}></div>
                   <div className={Styles.buttonoverlay}>
