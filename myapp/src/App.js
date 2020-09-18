@@ -36,7 +36,7 @@ class App extends React.Component {
         {this.state.route === "details" && (
           <RestaurantDetails
             id={this.state.activeBusiness}
-            changeRoute={this.changeRoute}
+            
           />
         )}
       </div>

@@ -92,7 +92,13 @@ class RestarauntDetails extends React.Component {
                     <img src={Star} width="16" height="16" /> {item.stars}
                   </div>
                 </h1>
-
+                <button
+                  className="backbutton"
+                  onClick={() => window.location.reload()}
+                >
+                  {" "}
+                  back{" "}
+                </button>
                 <h2>
                   {item.address}
                   <br />
