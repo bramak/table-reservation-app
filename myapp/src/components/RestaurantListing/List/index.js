@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "../style.module.css";
 import Star from "../../../images/star.svg";
-import Food from "../food.png";
 import { BUSINESS_DETAILS_API } from "../../../apiUrls";
 
 console.log(Star);
@@ -37,12 +36,15 @@ class List extends React.Component {
       );
   }
 
+  addDefaultSrc(ev){
+    ev.target.src = "./food.png";
+  }
+
   onClickBusiness = (id) => {
     this.props.onClickBusiness(id)
   };
 
   render() {
-    var url = "";
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -59,6 +61,7 @@ class List extends React.Component {
                     <img
                       className={Styles.image}
                       src={item.thumbnail}
+                      onError={this.addDefaultSrc}
                       alt={item.name}
                     />
                   </div>
