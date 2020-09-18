@@ -69,6 +69,7 @@ class RestarauntDetails extends React.Component {
   }
 
   render() {
+    var timeexist = true;
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -115,6 +116,8 @@ class RestarauntDetails extends React.Component {
                       <h3 align="center">{item.categories}</h3>
                     </div>
                     <hr width="80%"></hr>
+                    {timeexist = item.hours != null}
+                    { timeexist ? (
                     <div className="timingOfOpen">
                       <div className="Rtable">
                         <div>
@@ -160,7 +163,8 @@ class RestarauntDetails extends React.Component {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>) : (<div></div>)
+    }
                     <div className="centeringdiv">
                       <label className="container">
                         Restaraunt Reservations
