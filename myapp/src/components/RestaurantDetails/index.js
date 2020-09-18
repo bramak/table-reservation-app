@@ -91,7 +91,6 @@ class RestarauntDetails extends React.Component {
                   <div className="ratingboxInDetails">
                     <img src={Star} width="16" height="16" /> {item.stars}
                   </div>
-                  {/*<button className="backbutton" onClick="this.goToListingPage">Back</button>*/}
                 </h1>
 
                 <h2>

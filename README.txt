@@ -18,8 +18,10 @@ pages:
 
 shifting project to react in progress: go to myapp\.
 
-	\src\components\RestarauntListing.js - the main component for listing the restaraunts (still in progress)
-	\src\components\RestarauntListApicall.js - the main api call to list the restaraunts - child of RestarauntListing.js
+	\src\components\RestaurantListing - List of Restaraunts
+					\List - The rendering of the list
 
-	\src\components\RestarauntDetails.js - restaraunt details (still in progress)
-	\src\components\RestarauntDetailPhotos.js - photos of restaraunts - child of RestarauntDetails.js
+	\src\components\RestarauntDetails\ - restaraunt details
+					\RestarauntDetailPhotos - restaraunt photos
+
+	\src\common\ - common elements

@@ -3,3 +3,45 @@
     list-style-type: none;
     padding-left:0;
   }
+
+  .tab-list {
+    padding-left: 0;
+    background-color: #f1f1f1;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .tab-list-side {
+    position: fixed;
+    z-index: 10;
+    float: right;
+    background-color: #f1f1f1;
+    width: 12%;
+    height: 100%;
+    overflow: auto;
+    top: 0px;
+    right: 0;
+  }
+  
+  .tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    background-color: inherit;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  .tab-list-item:hover {
+    background-color: rgb(138, 131, 131);
+  }
+  
+  .tab-list-active {
+    background-color: #ccc;
+    border-width: 1px 1px 0 1px;
+  }

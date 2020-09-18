@@ -1,44 +1,4 @@
-.tab-list {
-  padding-left: 0;
-  background-color: #f1f1f1;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.tab-list-side {
-  position: fixed;
-  z-index: 10;
-  float: right;
-  background-color: #f1f1f1;
-  width: 12%;
-  height: 100%;
-  overflow: auto;
-  top: 0px;
-  right: 0;
-}
-
-.tab-list-item {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  background-color: inherit;
-  border: 0;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-.tab-list-item:hover {
-  background-color: rgb(138, 131, 131);
-}
-
-.tab-list-active {
-  background-color: #ccc;
-  border-width: 1px 1px 0 1px;
-}
 
 h1 {
   text-align: left;
@@ -50,11 +10,6 @@ h2 {
   font-size: medium;
 }
 
-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
 
 /*box with rating*/
 .ratingboxInDetails {
@@ -114,7 +69,7 @@ sticky {
   background-color: #b86645;
 }
 
-/*checkboxes*/ /*work on making unchageable*/
+/*checkboxes*/ 
 
 .container {
   text-align: left;
@@ -242,6 +197,7 @@ input[type="checkbox"][readonly] {
   border: 3px solid #000;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
   max-width: 25vw;
+  flex: 0 0 400px;
 }
 
 li {
@@ -280,6 +236,7 @@ right: 10px;
     border: 3px solid #000;
     box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
     max-width: 25vw;
+    flex: 0 0 400px;
   }
   .cards:hover img {
     margin: 5px;
