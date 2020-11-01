@@ -25,3 +25,5 @@ shifting project to react in progress: go to myapp\.
 					\RestarauntDetailPhotos - restaraunt photos
 
 	\src\common\ - common elements
+
+react version 2: go to myapp2\
