@@ -3,6 +3,7 @@ import Styles from "../style.module.css";
 import Star from "../../../images/star.svg";
 import Food from "../../../images/food.png";
 import { BUSINESS_DETAILS_API } from "../../../apiUrls";
+import {Link} from "react-router-dom";
 
 console.log(Star);
 
@@ -77,11 +78,12 @@ class List extends React.Component {
                 </div>
 
                 <div className={Styles.bottommain}>
+                  <Link to={`/Lists/${item.business_id}`}>
                   <button
                     className={Styles.button}
                   >
                     View Details
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             </li>

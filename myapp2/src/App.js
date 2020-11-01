@@ -2,6 +2,7 @@ import './App.css';
 import Header from "./components/Header";
 import Aboutpage from "./components/Aboutpage";
 import RestarauntListing from "./components/RestaurantListing";
+import RestrauntDetails from "./components/RestaurantDetails";
 import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/" exact component={Home}/>
       <Route path="/About" exact component={Aboutpage}/>
       <Route path="/Lists" exact component={RestarauntListing}/>
+      <Route path="/Lists/:buisnessId" component={RestrauntDetails}/>
       </Switch>
     </div>
     </Router>

@@ -44,9 +44,13 @@ class RestarauntDetails extends React.Component {
       return string;
     } else return "closed";
   };
+  
+  
 
   getBusinessDetails = (id) => {
-    fetch(`${BUSINESS_DETAILS_API}?business_id=${this.props.id}`)
+    var a = window.location.pathname;
+    var urllength = a.length;
+    fetch(`${BUSINESS_DETAILS_API}?business_id=${a.substring(urllength - 22, urllength)}`)
       .then((res) => res.json())
       .then(
         (data) => {
@@ -101,13 +105,6 @@ class RestarauntDetails extends React.Component {
                     <img src={Star} width="16" height="16" /> {item.stars}
                   </div>
                 </h1>
-                <button
-                  className="backbutton"
-                  onClick={() => window.location.reload()}
-                >
-                  {" "}
-                  back{" "}
-                </button>
                 <h2>
                   {item.address}
                   <br />

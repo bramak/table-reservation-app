@@ -1,5 +1,8 @@
-
-  ul{
+html {
+  scroll-behavior: smooth;
+}
+ 
+ ul{
     list-style-type: none;
     padding-left:0;
   }
@@ -46,19 +49,4 @@
     border-width: 1px 1px 0 1px;
   }
   
-  .navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 13vh;
-    background: chocolate;
-    color: white;
-  }
 
-  .nav-links{
-    align-items: center;
-    justify-content: space-around;
-
-  }
-
-  .nav-links .li{display: inline;}
