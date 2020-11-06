@@ -16,7 +16,7 @@ function Header() {
         <Link Style="color:white;" to="/">
           Home
         </Link>
-        <Link Style="color:white;" to="/Lists">
+        <Link Style="color:white;" to="/Restaraunts">
           Restaraunts
         </Link>
         <Link Style="color:white;" to="/About">

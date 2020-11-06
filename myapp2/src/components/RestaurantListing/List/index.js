@@ -78,7 +78,7 @@ class List extends React.Component {
                 </div>
 
                 <div className={Styles.bottommain}>
-                  <Link to={`/Lists/${item.business_id}`}>
+                  <Link to={`/Restaraunts/${item.business_id}`}>
                   <button
                     className={Styles.button}
                   >

@@ -4,27 +4,42 @@ import Aboutpage from "./components/Aboutpage";
 import RestarauntListing from "./components/RestaurantListing";
 import RestrauntDetails from "./components/RestaurantDetails";
 import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
+import { connect } from "react-redux";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./components/Home";
+import Login from "./components/Login";
 
-function App() {
+function App(props) {
+  const { isAuthenticated, isVerifying } = props;
   return (
     <Router>
     <div className="App">
       <Header/>
       <Switch>
-      <Route path="/" exact component={Home}/>
+      <ProtectedRoute
+        exact
+        path="/"
+        component={Home}
+        isAuthenticated={isAuthenticated}
+        isVerifying={isVerifying}
+      />
+      <Route path="/login" component={Login} />
       <Route path="/About" exact component={Aboutpage}/>
-      <Route path="/Lists" exact component={RestarauntListing}/>
-      <Route path="/Lists/:buisnessId" component={RestrauntDetails}/>
+      <Route path="/Restaraunts" exact component={RestarauntListing}/>
+      <Route path="/Restaraunts/:buisnessId" component={RestrauntDetails}/>
       </Switch>
     </div>
     </Router>
   );
 }
 
-const Home = () => (
-  <div>
-    <h1>Enter Page</h1>
-  </div>
-)
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying
+  };
+}
 
-export default App;
+
+
+export default connect(mapStateToProps)(App);
