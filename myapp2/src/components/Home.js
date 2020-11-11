@@ -1,6 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions";
+
+
+
+const styles = () => ({
+
+  outline: {
+    marginTop: 150,
+    marginBottom: 200,
+  }
+
+})
+
+
 class Home extends Component {
   handleLogout = () => {
     const { dispatch } = this.props;
@@ -9,7 +22,7 @@ class Home extends Component {
   render() {
     const { isLoggingOut, logoutError } = this.props;
     return (
-      <div>
+      <div className={styles.outline}>
         <h1>You have sucessfully logged in! Though you really didn't need to</h1>
         <button onClick={this.handleLogout}>Logout</button>
         {isLoggingOut && <p>Logging Out....</p>}

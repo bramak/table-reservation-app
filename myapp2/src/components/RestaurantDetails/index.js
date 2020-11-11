@@ -5,6 +5,8 @@ import Tabs from "../../common/Tabs";
 import RestaurantDetailPhotos from "./RestaurantDetailPhotos";
 import "./style.css";
 import { BUSINESS_DETAILS_API } from "../../apiUrls";
+import { colors } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 class RestarauntDetails extends React.Component {
   constructor(props) {
@@ -44,13 +46,16 @@ class RestarauntDetails extends React.Component {
       return string;
     } else return "closed";
   };
-  
-  
 
   getBusinessDetails = (id) => {
     var a = window.location.pathname;
     var urllength = a.length;
-    fetch(`${BUSINESS_DETAILS_API}?business_id=${a.substring(urllength - 22, urllength)}`)
+    fetch(
+      `${BUSINESS_DETAILS_API}?business_id=${a.substring(
+        urllength - 22,
+        urllength
+      )}`
+    )
       .then((res) => res.json())
       .then(
         (data) => {
@@ -88,17 +93,20 @@ class RestarauntDetails extends React.Component {
             <li key={index} id="restaraunts">
               <div>
                 <title>{item.name}</title>
-                {IsThumbnail= item.thumbnail!=undefined}
+                {(IsThumbnail = item.thumbnail != undefined)}
                 {IsThumbnail ? (
-                <img
-                  className="headingimage"
-                  src={item.thumbnail}
-                  alt="loading image please wait"
-                />):(<img
-                  className="headingimage"
-                  src={Food}
-                  alt="loading image please wait"
-                />)}
+                  <img
+                    className="headingimage"
+                    src={item.thumbnail}
+                    alt="loading image please wait"
+                  />
+                ) : (
+                  <img
+                    className="headingimage"
+                    src={Food}
+                    alt="loading image please wait"
+                  />
+                )}
                 <h1>
                   {item.name}{" "}
                   <div className="ratingboxInDetails">
@@ -114,62 +122,72 @@ class RestarauntDetails extends React.Component {
                   <br />
                   {item.postal_code}
                 </h2>
-
+                {this.converttobool(item.attributes.RestaurantsReservations) ? (
+                  <Link to={`/Restaraunts/Reserve/${item.business_id}`}>
+                    <div label="Reserve" className="reserveButton">
+                      Reserve
+                    </div>
+                  </Link>
+                ) : (
+                  <div></div>
+                )}
                 <Tabs>
                   <div label="Details">
                     <div className="detailsCategories" border="10">
                       <h3 align="center">{item.categories}</h3>
                     </div>
                     <hr width="80%"></hr>
-                    {timeexist = item.hours != null}
-                    { timeexist ? (
-                    <div className="timingOfOpen">
-                      <div className="Rtable">
-                        <div>
-                          <div className="Rtable-cell">Monday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Monday)}
+                    {(timeexist = item.hours != null)}
+                    {timeexist ? (
+                      <div className="timingOfOpen">
+                        <div className="Rtable">
+                          <div>
+                            <div className="Rtable-cell">Monday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Monday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Tuesday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Tuesday)}
+                          <div>
+                            <div className="Rtable-cell">Tuesday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Tuesday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Wednesday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Wednesday)}
+                          <div>
+                            <div className="Rtable-cell">Wednesday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Wednesday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Thursday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Thursday)}
+                          <div>
+                            <div className="Rtable-cell">Thursday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Thursday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Friday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Friday)}
+                          <div>
+                            <div className="Rtable-cell">Friday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Friday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Saturday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Saturday)}
+                          <div>
+                            <div className="Rtable-cell">Saturday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Saturday)}
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <div className="Rtable-cell">Sunday</div>
-                          <div className="Rtable-cell">
-                            {this.OpeningTimings(item.hours.Sunday)}
+                          <div>
+                            <div className="Rtable-cell">Sunday</div>
+                            <div className="Rtable-cell">
+                              {this.OpeningTimings(item.hours.Sunday)}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>) : (<div></div>)
-    }
+                    ) : (
+                      <div></div>
+                    )}
                     <div className="centeringdiv">
                       <label className="container">
                         Restaraunt Reservations

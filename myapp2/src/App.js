@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Aboutpage from "./components/Aboutpage";
 import RestarauntListing from "./components/RestaurantListing";
 import RestrauntDetails from "./components/RestaurantDetails";
+import ReserveTable from "./components/ReserveTable";
 import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
 import { connect } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -26,6 +27,11 @@ function App(props) {
       <Route path="/login" component={Login} />
       <Route path="/About" exact component={Aboutpage}/>
       <Route path="/Restaraunts" exact component={RestarauntListing}/>
+      <ProtectedRoute
+      path="/Restaraunts/Reserve/:buisnessId" component={ReserveTable}
+      isAuthenticated={isAuthenticated}
+      isVerifying={isVerifying}
+      />
       <Route path="/Restaraunts/:buisnessId" component={RestrauntDetails}/>
       </Switch>
     </div>

@@ -22,6 +22,8 @@ const styles = () => ({
     marginTop: 100,
     display: "flex",
     padding: 20,
+    marginTop: 150,
+    marginBottom: 200,
     flexDirection: "column",
     alignItems: "center"
   },
