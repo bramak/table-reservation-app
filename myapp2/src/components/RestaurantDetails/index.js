@@ -7,6 +7,8 @@ import "./style.css";
 import { BUSINESS_DETAILS_API } from "../../apiUrls";
 import { colors } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { RESERVE_TABLE } from "../../actions/reservation";
 
 class RestarauntDetails extends React.Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class RestarauntDetails extends React.Component {
   }
 
   goToListingPage = () => {
-    console.log(this.props);
     this.props.changeRoute("listing");
   };
 
@@ -123,12 +124,15 @@ class RestarauntDetails extends React.Component {
                   {item.postal_code}
                 </h2>
                 {this.converttobool(item.attributes.RestaurantsReservations) ? (
-                  <Link to={`/Restaraunts/Reserve/${item.business_id}`}>
-                    <div label="Reserve" className="reserveButton">
-                      Reserve
-                    </div>
-                  </Link>
+                  // <Link to={`/Restaraunts/Reserve/${item.business_id}`}>
+                  <button
+                    onClick={() => this.props.reserveTable(item.business_id)}
+                    className="reserveButton"
+                  >
+                    Reserve
+                  </button>
                 ) : (
+                  // </Link>
                   <div></div>
                 )}
                 <Tabs>
@@ -317,4 +321,16 @@ class RestarauntDetails extends React.Component {
   }
 }
 
-export default RestarauntDetails;
+const mapStateToProps = (state) => {
+  return {
+    businessId: state.reservation.businessId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    reserveTable: (id) => dispatch({ type: RESERVE_TABLE, businessId: id }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestarauntDetails);
