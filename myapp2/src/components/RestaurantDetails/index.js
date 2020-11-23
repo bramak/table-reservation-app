@@ -77,6 +77,7 @@ class RestarauntDetails extends React.Component {
 
   componentDidMount() {
     this.getBusinessDetails(this.props.id);
+    this.props.lastRoute(`${window.location.pathname}`)
   }
 
   render() {

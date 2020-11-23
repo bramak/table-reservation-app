@@ -1,6 +1,7 @@
 import { Container, Paper, TextField, Button } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {LAST_LOCATION_ROUTE} from "../../actions/routesRedirect";
 
 const styles = () => ({
   outline: {
@@ -30,6 +31,9 @@ const styles = () => ({
 });
 
 class ReserveTable extends Component {
+  componentDidMount(){
+    this.props.lastRoute(`/`)
+  }
   render() {
     return (
       <div className={styles.outline}>
@@ -74,4 +78,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ReserveTable);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    lastRoute: (address) =>dispatch({type: LAST_LOCATION_ROUTE, lastRoute: address}),
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ReserveTable);

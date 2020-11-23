@@ -17,6 +17,7 @@ const styles = () => ({
 
 class Home extends Component {
 
+  
   handleLogout = () => {
     const { dispatch } = this.props;
     dispatch(logoutUser());
@@ -28,10 +29,12 @@ class Home extends Component {
       <div className={styles.outline}>
         <h1>Welcome to the site</h1>
         {
-          isAuthenticated? (<h2>
-        <button onClick={this.handleLogout}>Logout</button></h2>
+          isAuthenticated? (<div>
+            <h2>Head to the restaraunts menu to check out your favourites!</h2><h2> Look into details to reserve</h2>
+            <h2>
+        <button onClick={this.handleLogout}>Logout</button></h2></div>
         ):(<div>
-          
+          <h2>Head to the restaraunts menu to check out your favourites!</h2>
           <h2>Login to reserve seats</h2><h2>
           <Link to="/login">
         <button>Login</button>
@@ -47,4 +50,6 @@ function mapStateToProps(state) {
     logoutError: state.auth.logoutError,
   };
 }
+
+
 export default connect(mapStateToProps)(Home);
