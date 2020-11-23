@@ -5,10 +5,10 @@ import Tabs from "../../common/Tabs";
 import RestaurantDetailPhotos from "./RestaurantDetailPhotos";
 import "./style.css";
 import { BUSINESS_DETAILS_API } from "../../apiUrls";
-import { colors } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { RESERVE_TABLE } from "../../actions/reservation";
+import {LAST_LOCATION_ROUTE} from "../../actions/routesRedirect";
 
 class RestarauntDetails extends React.Component {
   constructor(props) {
@@ -124,13 +124,15 @@ class RestarauntDetails extends React.Component {
                   {item.postal_code}
                 </h2>
                 {this.converttobool(item.attributes.RestaurantsReservations) ? (
-                  // <Link to={`/Restaraunts/Reserve/${item.business_id}`}>
+                   <Link to={`/Restaraunts/Reserve/${item.business_id}`}>
                   <button
-                    onClick={() => this.props.reserveTable(item.business_id)}
+                    onClick={() => {this.props.reserveTable(item.business_id)
+                      this.props.lastRoute(`/Restaraunts/Reserve/${item.business_id}`)}}
                     className="reserveButton"
                   >
                     Reserve
                   </button>
+                  </Link>
                 ) : (
                   // </Link>
                   <div></div>
@@ -330,6 +332,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     reserveTable: (id) => dispatch({ type: RESERVE_TABLE, businessId: id }),
+    lastRoute: (address) =>dispatch({type: LAST_LOCATION_ROUTE, lastRoute: address})
   };
 };
 

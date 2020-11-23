@@ -56,7 +56,7 @@ class List extends React.Component {
               <div className="tile">
                 <div className={Styles.mainbox}>
                   <div className={Styles.imgclassName}>
-                    {IsThumbnail= item.thumbnail!=undefined}
+                    {IsThumbnail= item.thumbnail!==undefined}
                     {IsThumbnail?(
                     <img
                       className={Styles.image}

@@ -63,7 +63,7 @@ class Login extends Component {
   render() {
     const { classes, loginError, isAuthenticated } = this.props;
     if (isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to={this.props.lastRoute} />;
     } else {
       return (
         <Container component="main" maxWidth="xs">
@@ -119,7 +119,8 @@ function mapStateToProps(state) {
   return {
     isLoggingIn: state.auth.isLoggingIn,
     loginError: state.auth.loginError,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    lastRoute: state.routesRedirect.lastRoute,
   };
 }
 
