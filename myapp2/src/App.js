@@ -17,7 +17,7 @@ function App(props) {
     <div className="App">
       <Header/>
       <Switch>
-      <ProtectedRoute
+      <Route
         exact
         path="/"
         component={Home}

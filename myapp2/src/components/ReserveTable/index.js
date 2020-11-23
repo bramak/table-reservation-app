@@ -55,6 +55,9 @@ class ReserveTable extends Component {
             <Button type="button" fullWidth variant="contained" color="primary">
               Confirm
             </Button>
+            <Button type="button" fullWidth variant="contained" color="secondary">
+              Add to list
+            </Button>
           </Paper>
         </Container>
       </div>
