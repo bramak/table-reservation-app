@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Cart from "./components/Cart";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -33,6 +34,7 @@ function App(props) {
       isVerifying={isVerifying}
       />
       <Route path="/Restaraunts/:buisnessId" component={RestrauntDetails}/>
+      <Route path="/Cart" exact component={Cart}/>
       </Switch>
     </div>
     </Router>
