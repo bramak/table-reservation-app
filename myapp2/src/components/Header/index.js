@@ -1,5 +1,6 @@
 import "../../App.css";
-import FoodIcon from "../../images/hamburger.ico";
+import CartIcon from "../../images/cartIcon.png";
+import CartIconActive from "../../images/cartIcon_active.png";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Styles from "./styles.module.css";
@@ -36,7 +37,15 @@ class Header extends Component {
           </Link>
 
           {this.props.isAuthenticated ? (
-            <div>Cart</div>
+            <div>
+              <Link to="/Cart">
+                {this.props.items.length ?(
+                <img src={CartIconActive} width="60px"height="50px"/>
+                ) : (
+                <img src={CartIcon} width="60px"height="50px"/>)
+                }
+              </Link>
+            </div>
         
           ) : (
             <div>
@@ -58,6 +67,9 @@ function mapStateToProps(state) {
     isAuthenticated: state.auth.isAuthenticated,
     isLoggingOut: state.auth.isLoggingOut,
     logoutError: state.auth.logoutError,
+    numberOfReservations: state.cart.numberOfReservations,
+    items: state.cart.Items,
+  
   };
 }
 

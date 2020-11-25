@@ -2,6 +2,8 @@ import { Container, Paper, TextField, Button } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {LAST_LOCATION_ROUTE} from "../../actions/routesRedirect";
+import {addToCart} from "../../actions/cart";
+import {Link} from "react-router-dom";
 
 const styles = () => ({
   outline: {
@@ -30,9 +32,14 @@ const styles = () => ({
   },
 });
 
+
+
 class ReserveTable extends Component {
   componentDidMount(){
     this.props.lastRoute(`/`)
+  }
+  handleClick = (id)=>{
+    this.props.addToCart(id); 
   }
   render() {
     return (
@@ -59,9 +66,14 @@ class ReserveTable extends Component {
             <Button type="button" fullWidth variant="contained" color="primary">
               Confirm
             </Button>
-            <Button type="button" fullWidth variant="contained" color="secondary">
+            {console.log(this.props.businessId)}
+            <Button type="button" fullWidth variant="contained" onClick={()=>{this.handleClick(this.props.businessId)}} color="secondary">
               Add to list
             </Button>
+            <Link to="/Cart">
+            <Button type="button" fullWidth variant="contained" color="primary">
+              Go to Reservation List
+            </Button></Link>
           </Paper>
         </Container>
       </div>
@@ -81,6 +93,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     lastRoute: (address) =>dispatch({type: LAST_LOCATION_ROUTE, lastRoute: address}),
+    addToCart: (id)=>{dispatch(addToCart(id))},
   };
 };
 
