@@ -11,11 +11,19 @@ const initialState = {
       case ADD_TO_CART: {
         let Item=action.id
         let numberOfRes = state.numberOfReservations + 1 
+        let alreadyReserved= state.Items.includes(Item)
+        console.log(alreadyReserved)
+         if(alreadyReserved){
+           return{
+          ...state,
+        }
+      }
+        else
         return {
           ...state,
           Items: [...state.Items, Item],
           numberOfReservations: numberOfRes,
-        };
+        }
       }
       case REMOVE_ITEM: {
           return{
