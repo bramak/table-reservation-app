@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import Styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions";
+import DropDownKart from "../Header/dropdownkart";
+import IconDropdownActive from "../Header/iconActive"; 
+import IconDropdown from "../../images/icondesign.png"
 
 class Header extends Component {
 
@@ -39,11 +42,7 @@ class Header extends Component {
           {this.props.isAuthenticated ? (
             <div>
               <Link to="/Cart">
-                {this.props.items.length ?(
-                <img src={CartIconActive} width="60px"height="50px"/>
-                ) : (
-                <img src={CartIcon} width="60px"height="50px"/>)
-                }
+              <DropDownKart/>
               </Link>
             </div>
         
